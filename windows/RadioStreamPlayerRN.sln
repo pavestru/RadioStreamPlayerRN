@@ -20,6 +20,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Facebook.Yoga.Shared", "..\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yoga.uwp", "..\node_modules\react-native-windows\Yoga\csharp\Yoga\Yoga.Universal.vcxproj", "{2EACF721-73B5-46AE-9775-4A8674D05A9C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactNativeVideo.Net46", "../\node_modules\react-native-video\windows\ReactNativeVideo.Net46\ReactNativeVideo.Net46.csproj", "{2D8406AB-0674-42D3-8FE3-41D251403DF8}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ReactNative.Shared\ReactNative.Shared.projitems*{c7673ad5-e3aa-468c-a5fd-fa38154e205c}*SharedItemsImports = 4
@@ -78,6 +80,30 @@ Global
 		c03549cc-c8b6-46ad-aa34-6515e7f11c59.ReleaseBundle|x86.ActiveCfg = ReleaseBundle|x86
 		c03549cc-c8b6-46ad-aa34-6515e7f11c59.ReleaseBundle|x86.Build.0 = ReleaseBundle|x86
 		c03549cc-c8b6-46ad-aa34-6515e7f11c59.ReleaseBundle|x86.Deploy.0 = ReleaseBundle|x86
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.Debug|ARM.ActiveCfg = Debug|ARM
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.Debug|ARM.Build.0 = Debug|ARM
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.Debug|x64.ActiveCfg = Debug|x64
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.Debug|x64.Build.0 = Debug|x64
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.Debug|x86.ActiveCfg = Debug|x86
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.Debug|x86.Build.0 = Debug|x86
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.DebugBundle|ARM.ActiveCfg = Debug|ARM
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.DebugBundle|ARM.Build.0 = Debug|ARM
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.DebugBundle|x64.ActiveCfg = Debug|x64
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.DebugBundle|x64.Build.0 = Debug|x64
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.DebugBundle|x86.ActiveCfg = Debug|x86
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.DebugBundle|x86.Build.0 = Debug|x86
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.Release|ARM.ActiveCfg = Release|ARM
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.Release|ARM.Build.0 = Release|ARM
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.Release|x64.ActiveCfg = Release|x64
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.Release|x64.Build.0 = Release|x64
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.Release|x86.ActiveCfg = Release|x86
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.Release|x86.Build.0 = Release|x86
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.ReleaseBundle|ARM.ActiveCfg = Release|ARM
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.ReleaseBundle|ARM.Build.0 = Release|ARM
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.ReleaseBundle|x64.ActiveCfg = Release|x64
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.ReleaseBundle|x64.Build.0 = Release|x64
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.ReleaseBundle|x86.ActiveCfg = Release|x86
+        {2D8406AB-0674-42D3-8FE3-41D251403DF8}.ReleaseBundle|x86.Build.0 = Release|x86
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|ARM.ActiveCfg = Debug|ARM
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|ARM.Build.0 = Debug|ARM
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|x64.ActiveCfg = Debug|x64
