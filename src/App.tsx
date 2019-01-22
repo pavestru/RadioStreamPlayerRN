@@ -1,60 +1,57 @@
-import React from 'react';
-import RX from 'reactxp';
+import React from "react";
+import RX from "reactxp";
+
+import { Player } from "./Player";
 
 const _styles = {
   main: RX.Styles.createViewStyle({
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "stretch",
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0
+  }),
+
+  content: RX.Styles.createViewStyle({
+    flexShrink: 1,
+    flexGrow: 1,
+    paddingVertical: 10
+  }),
+
+  player: RX.Styles.createViewStyle({
+    flexGrow: 0,
+    flexShrink: 0,
+    flexBasis: 100,
+    backgroundColor: "darkgrey"
   }),
 
   title: RX.Styles.createTextStyle({
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 36,
-    textAlign: 'center',
-  }),
-
-  label: RX.Styles.createTextStyle({
-    marginTop: 10,
-    textAlign: 'center',
-    fontSize: 16,
+    textAlign: "center"
   }),
 
   name: RX.Styles.createTextStyle({
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 36,
-    color: '#42B74F',
-  }),
-
-  links: RX.Styles.createViewStyle({
-    justifyContent: 'center',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 10,
-  }),
-
-  link: RX.Styles.createLinkStyle({
-    textDecorationLine: 'underline',
-    paddingRight: 5,
-    paddingLeft: 5,
-    color: '#0070E0',
-  }),
+    color: "red"
+  })
 };
 
 export class App extends RX.Component {
   public render() {
     return (
-      <RX.View style={ _styles.main }>
-        <RX.View>
-          <RX.Text style={ _styles.title }>Welcome to <RX.Text style={ _styles.name }>ReactXP</RX.Text></RX.Text>
-          <RX.Text style={ _styles.label }>To get started, edit /src/App.tsx</RX.Text>
+      <RX.View style={_styles.main}>
+        <RX.View style={_styles.content}>
+          <RX.Text style={_styles.title}>
+            Radio <RX.Text style={_styles.name}>Streamer</RX.Text>
+          </RX.Text>
         </RX.View>
-
-        <RX.View style={ _styles.links }>
-          <RX.Link url={ 'https://github.com/Microsoft/reactxp' } style={ _styles.link }>GitHub</RX.Link>
-          <RX.Link url={ 'https://microsoft.github.io/reactxp' } style={ _styles.link }>Docs</RX.Link>
-          <RX.Link url={ 'https://github.com/Microsoft/reactxp/tree/master/samples' } style={ _styles.link }>Samples</RX.Link>
-          <RX.Link url={ 'https://github.com/Microsoft/reactxp/tree/master/extensions' } style={ _styles.link }>Extensions</RX.Link>
+        <RX.View style={_styles.player}>
+          <Player />
         </RX.View>
       </RX.View>
     );

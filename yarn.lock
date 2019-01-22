@@ -845,6 +845,22 @@
     "@types/node" "*"
     "@types/react" "*"
 
+"@types/react-native-video@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@types/react-native-video/-/react-native-video-3.1.0.tgz#cbb5c77ef62c5927b893d7db99baba79d618ca76"
+  integrity sha512-8Y/8lQ+H7bv28mzO5JYYXy1CviwGPw/dtNblK56+GrW/OOkeWaR+viiSCvdd5/yKIEHM26g77GdMFydSFvlxOw==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+
+"@types/react-native@*":
+  version "0.57.30"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.57.30.tgz#2fdf5f68932e0fa3e5b589031acedecaadd091ea"
+  integrity sha512-7FU+NBz8JOupPGvlpRtL1NpzlhRRXCmEmwWaaMqB/399Q13LtbxMIOZfNuU/SnCQBw1SJX7qydTtuCzE/xH/Hg==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/react" "*"
+
 "@types/react-native@0.56.12":
   version "0.56.12"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.56.12.tgz#1d09acaa632b6d2199d9bd55a2846e8e4f027868"
@@ -6009,6 +6025,11 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
+keymirror@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/keymirror/-/keymirror-0.1.1.tgz#918889ea13f8d0a42e7c557250eee713adc95c35"
+  integrity sha1-kYiJ6hP40KQufFVyUO7nE63JXDU=
+
 killable@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/killable/-/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"
@@ -7948,7 +7969,7 @@ prompts@^0.1.9:
     kleur "^2.0.1"
     sisteransi "^0.1.1"
 
-prop-types@^15.5.8, prop-types@^15.6.2:
+prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   integrity sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==
@@ -8152,6 +8173,15 @@ react-is@^16.6.1, react-is@^16.7.0:
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.7.0.tgz#c1bd21c64f1f1364c6f70695ec02d69392f41bfa"
   integrity sha512-Z0VRQdF4NPDoI0tsXVMLkJLiwEBa+RP66g0xDHxgxysxSoCUccSten4RTF/UFvZF1dZvZ9Zu1sx+MDXwcOR34g==
+
+react-native-video@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-video/-/react-native-video-4.3.1.tgz#dd5cd7feeba1068dffb36ca0406214fe6ffc01aa"
+  integrity sha512-Xvup8RRJCIXM7SjfxhzOP7XCZIhSBpuMvLYnlAYkt/eCl8mzkqRSmXqqu4KZXgdvdU4rtRVvVZ9CwUEESPCJuA==
+  dependencies:
+    keymirror "^0.1.1"
+    prop-types "^15.5.10"
+    shaka-player "^2.4.4"
 
 react-native-windows@0.57.0-rc.0:
   version "0.57.0-rc.0"
@@ -8944,6 +8974,11 @@ sha.js@^2.4.0, sha.js@^2.4.8:
   dependencies:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
+
+shaka-player@^2.4.4:
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/shaka-player/-/shaka-player-2.4.6.tgz#2a373cfa7f2867d7ba78a53fcdb25fa19cdaf5c0"
+  integrity sha512-f9zWbTPfQYtAKNlL9jmT77XUKvylueu3oM5Vo9DSXwfJa3OE8Vv1R9DGUh1eHra8mVWzvwppkbYVFV/ewQIisw==
 
 shebang-command@^1.2.0:
   version "1.2.0"
