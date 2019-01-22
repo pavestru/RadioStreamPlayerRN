@@ -60,3 +60,7 @@ buck-out/
 # Web dist
 #
 dist-*
+
+# VS Code
+#
+.vscode
