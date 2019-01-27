@@ -2,6 +2,20 @@ import React from "react";
 import RX from "reactxp";
 
 import Video from "react-native-video";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+
+export const Play = () => <Icon name="play" size={70} color="#444" />;
+export const Stop = () => <Icon name="stop" size={70} />;
+
+const _styles = {
+  button: RX.Styles.createViewStyle({
+    width: 70,
+    height: 70,
+    margin: 15,
+    backgroundColor: "darkgray",
+    borderRadius: 25
+  })
+};
 
 export class Player extends RX.Component {
   state = {
@@ -16,8 +30,8 @@ export class Player extends RX.Component {
 
   render() {
     return (
-      <RX.GestureView onTap={this.handleOnTap}>
-        <RX.Text>{this.state.paused ? "Play" : "Stop"}</RX.Text>
+      <RX.GestureView style={_styles.button} onTap={this.handleOnTap}>
+        {this.state.paused ? <Play /> : <Stop />}
         {!this.state.paused && (
           <Video
             source={{

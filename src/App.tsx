@@ -25,7 +25,9 @@ const _styles = {
     flexGrow: 0,
     flexShrink: 0,
     flexBasis: 100,
-    backgroundColor: "darkgrey"
+    backgroundColor: "lightgray",
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40
   }),
 
   title: RX.Styles.createTextStyle({
