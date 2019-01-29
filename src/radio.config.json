@@ -1,0 +1,6 @@
+{
+  "radioName": "My Radio",
+  "radioUrl": "http://relay.publicdomainproject.org:80/classical.mp3",
+  "dataUrl": "http://centova.example.com:8080/external/rpc.php",
+  "ignoreTracksContaining": ["call-sign", "key-signature"]
+}

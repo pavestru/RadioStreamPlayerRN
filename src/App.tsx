@@ -2,6 +2,10 @@ import React from "react";
 import RX from "reactxp";
 
 import { Player } from "./Player";
+import { RecentTracksList } from "./RecentTracksList";
+
+import { dataUrl, radioUrl, ignoreTracksContaining } from "./radio.config.json";
+import charMap from "./charMap";
 
 const _styles = {
   main: RX.Styles.createViewStyle({
@@ -43,8 +47,70 @@ const _styles = {
   })
 };
 
+interface Track {
+  title: string;
+  artist: string;
+  time?: string;
+}
+
+const fixChars = (text: string) => {
+  let newText = text + "";
+  for (const ch in charMap) {
+    if (charMap.hasOwnProperty(ch)) {
+      const re = new RegExp(ch, "g");
+      newText = newText.replace(re, charMap[ch]);
+    }
+  }
+  return newText;
+};
+
+const ignoreTracksFilter = (track: Track) => {
+  for (const substring of ignoreTracksContaining) {
+    if (
+      track.title.toLowerCase().includes(substring.toLowerCase()) ||
+      track.artist.toLowerCase().includes(substring.toLowerCase())
+    ) {
+      return false;
+    }
+  }
+  return true;
+};
+
 export class App extends RX.Component {
+  state = {
+    recentTracks: []
+  };
+
+  async componentDidMount() {
+    this.getRecentTracks();
+    setInterval(this.getRecentTracks, 15 * 1000);
+  }
+
+  getRecentTracks = async () => {
+    try {
+      const response = await fetch(
+        dataUrl +
+          `?m=recenttracks.get&username=radiopokoj&rid=radiopokoj&_=${Date.now()}`
+      );
+      const responseJson = await response.json();
+      this.setState({
+        recentTracks: responseJson.data.data[0]
+          .map((trackObj: Track) => ({
+            artist: fixChars(trackObj.artist),
+            title: fixChars(trackObj.title),
+            time: trackObj.time
+          }))
+          .filter(ignoreTracksFilter)
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   public render() {
+    const { recentTracks } = this.state;
+    const artist = recentTracks.length > 0 ? recentTracks[0].artist : "";
+    const title = recentTracks.length > 0 ? recentTracks[0].title : "";
     return (
       <RX.View style={_styles.main}>
         <RX.View style={_styles.content}>
@@ -52,8 +118,9 @@ export class App extends RX.Component {
             Radio <RX.Text style={_styles.name}>Streamer</RX.Text>
           </RX.Text>
         </RX.View>
+        <RecentTracksList tracks={recentTracks} />
         <RX.View style={_styles.player}>
-          <Player />
+          <Player artist={artist} title={title} url={radioUrl} />
         </RX.View>
       </RX.View>
     );

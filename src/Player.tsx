@@ -5,7 +5,7 @@ import Video from "react-native-video";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export const Play = () => <Icon name="play" size={70} color="#444" />;
-export const Stop = () => <Icon name="stop" size={70} />;
+export const Stop = () => <Icon name="stop" size={70} color="#444" />;
 
 const _styles = {
   button: RX.Styles.createViewStyle({
@@ -17,7 +17,17 @@ const _styles = {
   })
 };
 
-export class Player extends RX.Component {
+interface Props {
+  title: string;
+  artist: string;
+  url: string;
+}
+
+interface State {
+  paused: boolean;
+}
+
+export class Player extends RX.Component<Props, State> {
   state = {
     paused: true
   };
@@ -35,7 +45,7 @@ export class Player extends RX.Component {
         {!this.state.paused && (
           <Video
             source={{
-              uri: "http://relay.publicdomainproject.org:80/classical.mp3"
+              uri: this.props.url
             }}
             paused={this.state.paused}
             volume={this.state.volume}
