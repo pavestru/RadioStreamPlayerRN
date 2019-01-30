@@ -1,7 +1,7 @@
 import React from "react";
 import RX from "reactxp";
 
-const formatTime = time => {
+const formatTime = (time: number) => {
   const jsTime = new Date(time * 1000);
   return jsTime.toLocaleTimeString();
 };
@@ -9,7 +9,7 @@ const formatTime = time => {
 interface Track {
   title: string;
   artist: string;
-  time?: string;
+  time: number;
 }
 
 interface Props {
@@ -18,12 +18,18 @@ interface Props {
 
 export const RecentTracksList = ({ tracks }: Props) => (
   <RX.View>
-    <h3>Posledné hrané:</h3>
+    <RX.Text>Posledné hrané:</RX.Text>
     {tracks.map(({ artist, title, time }) => (
       <RX.View key={time}>
-        <RX.View>{title}</RX.View>
-        <RX.View>{artist}</RX.View>
-        <RX.View>od {formatTime(time)}</RX.View>
+        <RX.View>
+          <RX.Text>{title}</RX.Text>
+        </RX.View>
+        <RX.View>
+          <RX.Text>{artist}</RX.Text>
+        </RX.View>
+        <RX.View>
+          <RX.Text>od {formatTime(time)}</RX.Text>
+        </RX.View>
       </RX.View>
     ))}
   </RX.View>

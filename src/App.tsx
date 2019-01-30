@@ -50,7 +50,7 @@ const _styles = {
 interface Track {
   title: string;
   artist: string;
-  time?: string;
+  time: number;
 }
 
 const fixChars = (text: string) => {
@@ -76,8 +76,12 @@ const ignoreTracksFilter = (track: Track) => {
   return true;
 };
 
-export class App extends RX.Component {
-  state = {
+interface State {
+  recentTracks: Track[];
+}
+
+export class App extends RX.Component<{}, State> {
+  state: State = {
     recentTracks: []
   };
 
@@ -88,13 +92,10 @@ export class App extends RX.Component {
 
   getRecentTracks = async () => {
     try {
-      const response = await fetch(
-        dataUrl +
-          `?m=recenttracks.get&username=radiopokoj&rid=radiopokoj&_=${Date.now()}`
-      );
+      const response = await fetch(dataUrl + `&_=${Date.now()}`);
       const responseJson = await response.json();
       this.setState({
-        recentTracks: responseJson.data.data[0]
+        recentTracks: responseJson.data[0]
           .map((trackObj: Track) => ({
             artist: fixChars(trackObj.artist),
             title: fixChars(trackObj.title),
@@ -103,7 +104,7 @@ export class App extends RX.Component {
           .filter(ignoreTracksFilter)
       });
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -117,8 +118,8 @@ export class App extends RX.Component {
           <RX.Text style={_styles.title}>
             Radio <RX.Text style={_styles.name}>Streamer</RX.Text>
           </RX.Text>
+          <RecentTracksList tracks={recentTracks} />
         </RX.View>
-        <RecentTracksList tracks={recentTracks} />
         <RX.View style={_styles.player}>
           <Player artist={artist} title={title} url={radioUrl} />
         </RX.View>
