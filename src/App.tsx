@@ -25,15 +25,6 @@ const _styles = {
     paddingVertical: 10
   }),
 
-  player: RX.Styles.createViewStyle({
-    flexGrow: 0,
-    flexShrink: 0,
-    flexBasis: 100,
-    backgroundColor: "lightgray",
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40
-  }),
-
   title: RX.Styles.createTextStyle({
     fontWeight: "bold",
     fontSize: 36,
@@ -120,9 +111,7 @@ export class App extends RX.Component<{}, State> {
           </RX.Text>
           <RecentTracksList tracks={recentTracks} />
         </RX.View>
-        <RX.View style={_styles.player}>
-          <Player artist={artist} title={title} url={radioUrl} />
-        </RX.View>
+        <Player artist={artist} title={title} url={radioUrl} />
       </RX.View>
     );
   }
