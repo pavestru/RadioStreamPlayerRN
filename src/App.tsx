@@ -25,10 +25,10 @@ const _styles = {
     paddingVertical: 10
   }),
 
-  title: RX.Styles.createTextStyle({
-    fontWeight: "bold",
-    fontSize: 36,
-    textAlign: "center"
+  logo: RX.Styles.createImageStyle({
+    marginTop: 30,
+    marginHorizontal: 10,
+    height: 80
   }),
 
   name: RX.Styles.createTextStyle({
@@ -106,9 +106,12 @@ export class App extends RX.Component<{}, State> {
     return (
       <RX.View style={_styles.main}>
         <RX.View style={_styles.content}>
-          <RX.Text style={_styles.title}>
-            Radio <RX.Text style={_styles.name}>Streamer</RX.Text>
-          </RX.Text>
+          <RX.Image
+            resizeMode="contain"
+            style={_styles.logo}
+            source={require("./logo.png")}
+            title="Logo"
+          />
           <RecentTracksList tracks={recentTracks} />
         </RX.View>
         <Player artist={artist} title={title} url={radioUrl} />
