@@ -1,6 +1,8 @@
 import React from "react";
 import RX from "reactxp";
 
+import { isIphoneX } from "./helpers";
+
 import { Player } from "./Player";
 import { RecentTracksList } from "./RecentTracksList";
 
@@ -9,24 +11,17 @@ import charMap from "./charMap";
 
 const _styles = {
   main: RX.Styles.createViewStyle({
-    flexDirection: "column",
-    justifyContent: "space-between",
-    alignItems: "stretch",
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0
+    flex: 1,
+    backgroundColor: "white"
   }),
 
   content: RX.Styles.createViewStyle({
     flexShrink: 1,
-    flexGrow: 1,
-    paddingVertical: 10
+    flexGrow: 1
   }),
 
   logo: RX.Styles.createImageStyle({
-    marginTop: 30,
+    marginTop: isIphoneX ? 50 : 20,
     marginHorizontal: 10,
     height: 80
   }),
