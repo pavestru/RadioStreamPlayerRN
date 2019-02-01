@@ -10,7 +10,10 @@ const _styles = {
     justifyContent: "space-between",
     marginBottom: 15
   }),
-  artistAndTitle: RX.Styles.createViewStyle({}),
+  artistAndTitle: RX.Styles.createViewStyle({
+    flexGrow: 1,
+    flexShrink: 1
+  }),
   titleText: RX.Styles.createTextStyle({
     fontSize: 20
   }),
@@ -19,12 +22,17 @@ const _styles = {
     fontWeight: "bold",
     fontSize: 18
   }),
+  time: RX.Styles.createViewStyle({
+    flexBasis: 120,
+    flexGrow: 0
+  }),
   timeText: RX.Styles.createTextStyle({
     height: 25,
     lineHeight: 25,
     textAlignVertical: "center",
     color: "gray",
-    fontSize: 15
+    fontSize: 15,
+    textAlign: "right"
   })
 };
 
@@ -52,7 +60,7 @@ export const RecentTracksList = ({ tracks }: Props) => (
           <RX.Text style={_styles.titleText}>{title}</RX.Text>
           <RX.Text style={_styles.artistText}>{artist}</RX.Text>
         </RX.View>
-        <RX.View>
+        <RX.View style={_styles.time}>
           <RX.Text style={_styles.timeText}>od {formatTime(time)}</RX.Text>
         </RX.View>
       </RX.View>
