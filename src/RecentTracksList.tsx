@@ -1,6 +1,8 @@
 import React from "react";
 import RX from "reactxp";
 
+import { StateContext } from "./StateContext";
+
 const _styles = {
   main: RX.Styles.createViewStyle({
     padding: 15
@@ -41,29 +43,28 @@ const formatTime = (time: number) => {
   return jsTime.toLocaleTimeString();
 };
 
-interface Track {
-  title: string;
-  artist: string;
-  time: number;
-}
-
-interface Props {
-  tracks: Track[];
-}
-
-export const RecentTracksList = ({ tracks }: Props) => (
-  <RX.View style={_styles.main}>
-    <RX.Text>Posledné hrané:</RX.Text>
-    {tracks.map(({ artist, title, time }) => (
-      <RX.View key={time} style={_styles.listItem}>
-        <RX.View style={_styles.artistAndTitle}>
-          <RX.Text style={_styles.titleText}>{title}</RX.Text>
-          <RX.Text style={_styles.artistText}>{artist}</RX.Text>
+export const RecentTracksList = () => (
+  <StateContext.Consumer>
+    {state => {
+      const tracks = state!.recentTracks;
+      return (
+        <RX.View style={_styles.main}>
+          <RX.Text>Posledné hrané:</RX.Text>
+          {tracks.map(({ artist, title, time }) => (
+            <RX.View key={time} style={_styles.listItem}>
+              <RX.View style={_styles.artistAndTitle}>
+                <RX.Text style={_styles.titleText}>{title}</RX.Text>
+                <RX.Text style={_styles.artistText}>{artist}</RX.Text>
+              </RX.View>
+              <RX.View style={_styles.time}>
+                <RX.Text style={_styles.timeText}>
+                  od {formatTime(time)}
+                </RX.Text>
+              </RX.View>
+            </RX.View>
+          ))}
         </RX.View>
-        <RX.View style={_styles.time}>
-          <RX.Text style={_styles.timeText}>od {formatTime(time)}</RX.Text>
-        </RX.View>
-      </RX.View>
-    ))}
-  </RX.View>
+      );
+    }}
+  </StateContext.Consumer>
 );
