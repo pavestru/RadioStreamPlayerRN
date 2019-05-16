@@ -57,9 +57,7 @@ export class Player extends RX.Component<{}, State> {
   };
 
   handleOnTap = () => {
-    this.setState({ paused: !this.state.paused }, () => {
-      console.log(this.state);
-    });
+    this.setState({ paused: !this.state.paused });
   };
 
   render() {
