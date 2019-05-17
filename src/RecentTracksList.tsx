@@ -5,7 +5,8 @@ import { StateContext } from "./StateContext";
 
 const _styles = {
   main: RX.Styles.createViewStyle({
-    padding: 15
+    padding: 20,
+    marginTop: 10
   }),
   listItem: RX.Styles.createViewStyle({
     flexDirection: "row",
@@ -49,7 +50,6 @@ export const RecentTracksList = () => (
       const tracks = state!.recentTracks;
       return (
         <RX.View style={_styles.main}>
-          <RX.Text>Posledné hrané:</RX.Text>
           {tracks.map(({ artist, title, time }) => (
             <RX.View key={time} style={_styles.listItem}>
               <RX.View style={_styles.artistAndTitle}>

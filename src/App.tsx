@@ -1,5 +1,9 @@
 import React from "react";
 import RX from "reactxp";
+import {
+  createMaterialTopTabNavigator,
+  createAppContainer
+} from "react-navigation";
 
 import { StateContext } from "./StateContext";
 
@@ -7,6 +11,33 @@ import { isIphoneX } from "./helpers";
 
 import { Player } from "./Player";
 import { RecentTracksList } from "./RecentTracksList";
+import { Articles } from "./Articles";
+
+const MainNavigator = createMaterialTopTabNavigator(
+  {
+    Články: { screen: Articles },
+    "Posledné hrané": { screen: RecentTracksList }
+  },
+  {
+    tabBarOptions: {
+      upperCaseLabel: false,
+      activeTintColor: "#0a4d65",
+      style: {
+        backgroundColor: "rgba(200, 200, 200, 0.5)"
+      },
+      labelStyle: {
+        color: "#0a4d65",
+        fontSize: 20,
+        fontWeight: "bold"
+      },
+      indicatorStyle: {
+        backgroundColor: "#0a4d65"
+      }
+    }
+  }
+);
+
+const MainView = createAppContainer(MainNavigator);
 
 const _styles = {
   main: RX.Styles.createViewStyle({
@@ -22,6 +53,7 @@ const _styles = {
   logo: RX.Styles.createImageStyle({
     marginTop: isIphoneX ? 50 : 20,
     marginHorizontal: 10,
+    marginBottom: 10,
     height: 80
   }),
 
@@ -44,7 +76,7 @@ export class App extends RX.Component {
               source={require("./logo.png")}
               title="Logo"
             />
-            <RecentTracksList />
+            <MainView />
           </RX.View>
           <Player />
         </RX.View>
