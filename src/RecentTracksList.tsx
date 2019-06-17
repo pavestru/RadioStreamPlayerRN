@@ -18,11 +18,11 @@ const _styles = {
     flexShrink: 1
   }),
   titleText: RX.Styles.createTextStyle({
+    color: "white",
     fontSize: 20
   }),
   artistText: RX.Styles.createTextStyle({
-    color: "gray",
-    fontWeight: "bold",
+    color: "lightgray",
     fontSize: 18
   }),
   time: RX.Styles.createViewStyle({
@@ -33,7 +33,7 @@ const _styles = {
     height: 25,
     lineHeight: 25,
     textAlignVertical: "center",
-    color: "gray",
+    color: "lightgray",
     fontSize: 15,
     textAlign: "right"
   })

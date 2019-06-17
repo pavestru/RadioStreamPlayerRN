@@ -23,7 +23,7 @@ const MainNavigator = createMaterialTopTabNavigator(
       upperCaseLabel: false,
       activeTintColor: "#0a4d65",
       style: {
-        backgroundColor: "rgba(200, 200, 200, 0.5)"
+        backgroundColor: "#ccd3de"
       },
       labelStyle: {
         color: "#0a4d65",
@@ -31,7 +31,10 @@ const MainNavigator = createMaterialTopTabNavigator(
         fontWeight: "bold"
       },
       indicatorStyle: {
-        backgroundColor: "#0a4d65"
+        backgroundColor: "gray",
+        height: 3,
+        borderTopLeftRadius: 2,
+        borderTopRightRadius: 2
       }
     }
   }
@@ -42,12 +45,16 @@ const MainView = createAppContainer(MainNavigator);
 const _styles = {
   main: RX.Styles.createViewStyle({
     flex: 1,
-    backgroundColor: "white"
+    backgroundColor: "#069"
   }),
 
   content: RX.Styles.createViewStyle({
     flexShrink: 1,
     flexGrow: 1
+  }),
+
+  logoView: RX.Styles.createViewStyle({
+    backgroundColor: "#fafbfd"
   }),
 
   logo: RX.Styles.createImageStyle({
@@ -70,12 +77,14 @@ export class App extends RX.Component {
       <StateContext.Provider>
         <RX.View style={_styles.main}>
           <RX.View style={_styles.content}>
-            <RX.Image
-              resizeMode="contain"
-              style={_styles.logo}
-              source={require("./logo.png")}
-              title="Logo"
-            />
+            <RX.View style={_styles.logoView}>
+              <RX.Image
+                resizeMode="contain"
+                style={_styles.logo}
+                source={require("./logo.png")}
+                title="Logo"
+              />
+            </RX.View>
             <MainView />
           </RX.View>
           <Player />

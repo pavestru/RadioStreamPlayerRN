@@ -8,15 +8,15 @@ import { StateContext } from "./StateContext";
 
 import { radioUrl } from "./radio.config.json";
 
-export const Play = () => <Icon name="play" size={70} color="#444" />;
-export const Stop = () => <Icon name="stop" size={70} color="#444" />;
+export const Play = () => <Icon name="play" size={64} color="#0a4d65" />;
+export const Stop = () => <Icon name="stop" size={64} color="#0a4d65" />;
 
 const _styles = {
   player: RX.Styles.createViewStyle({
     flexGrow: 0,
     flexShrink: 0,
     flexBasis: 100,
-    backgroundColor: "lightgray",
+    backgroundColor: "#ccd3de",
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
     flexDirection: "row",
@@ -26,7 +26,8 @@ const _styles = {
     width: 70,
     height: 70,
     margin: 15,
-    backgroundColor: "darkgray",
+    padding: 3,
+    backgroundColor: "#adbabf",
     borderRadius: 25
   }),
   info: RX.Styles.createViewStyle({
@@ -34,6 +35,8 @@ const _styles = {
     flexGrow: 1
   }),
   title: RX.Styles.createTextStyle({
+    color: "#0a4d65",
+    fontWeight: "bold",
     lineHeight: 24,
     textAlignVertical: "center",
     fontSize: 18,
@@ -42,8 +45,7 @@ const _styles = {
   artist: RX.Styles.createTextStyle({
     lineHeight: 24,
     fontSize: 18,
-    fontWeight: "bold",
-    color: "gray"
+    color: "#0a4d65"
   })
 };
 

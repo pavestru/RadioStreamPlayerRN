@@ -11,13 +11,15 @@ const _styles = {
   listItem: RX.Styles.createViewStyle({
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 15
+    marginBottom: 20
   }),
   title: RX.Styles.createTextStyle({
-    fontSize: 20
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white"
   }),
   text: RX.Styles.createTextStyle({
-    color: "gray",
+    color: "white",
     fontSize: 18
   })
 };
