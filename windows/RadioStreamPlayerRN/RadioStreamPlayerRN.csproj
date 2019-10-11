@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>c03549cc-c8b6-46ad-aa34-6515e7f11c59</ProjectGuid>
+    <ProjectGuid>d4ccb859-ce62-46f2-985a-3f62aae96a59</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RadioStreamPlayerRN</RootNamespace>
@@ -211,6 +211,26 @@
     <ProjectReference Include="..\../\node_modules\react-native-video\windows\ReactNativeVideo.Net46\ReactNativeVideo.Net46.csproj">
       <Project>{2D8406AB-0674-42D3-8FE3-41D251403DF8}</Project>
       <Name>ReactNativeVideo.Net46</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\../\node_modules\react-native-windows\ReactWindows\ReactNative.Net46\ReactNative.Net46.csproj">
+      <Project>{22CBFF9C-FE36-43E8-A246-266C7635E662}</Project>
+      <Name>ReactNative.Net46</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\../\node_modules\react-native-video\windows\ReactNativeVideo.Net46\ReactNativeVideo.Net46.csproj">
+      <Project>{2D8406AB-0674-42D3-8FE3-41D251403DF8}</Project>
+      <Name>ReactNativeVideo.Net46</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\../\node_modules\react-native-windows\ReactWindows\ReactNative.Net46\ReactNative.Net46.csproj">
+      <Project>{22CBFF9C-FE36-43E8-A246-266C7635E662}</Project>
+      <Name>ReactNative.Net46</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\../\node_modules\react-native-video\windows\ReactNativeVideo.Net46\ReactNativeVideo.Net46.csproj">
+      <Project>{2D8406AB-0674-42D3-8FE3-41D251403DF8}</Project>
+      <Name>ReactNativeVideo.Net46</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\../\node_modules\react-native-windows\ReactWindows\ReactNative.Net46\ReactNative.Net46.csproj">
+      <Project>{22CBFF9C-FE36-43E8-A246-266C7635E662}</Project>
+      <Name>ReactNative.Net46</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\node_modules\react-native-windows\ReactWindows\ReactNative\ReactNative.csproj">
       <Project>{c7673ad5-e3aa-468c-a5fd-fa38154e205c}</Project>
