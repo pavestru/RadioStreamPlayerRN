@@ -1,9 +1,7 @@
 import React from "react";
 import RX from "reactxp";
-import {
-  createMaterialTopTabNavigator,
-  createAppContainer
-} from "react-navigation";
+import { createAppContainer } from "react-navigation";
+import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 
 import { StateContext } from "./StateContext";
 
