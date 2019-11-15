@@ -19,17 +19,17 @@ const MainNavigator = createMaterialTopTabNavigator(
   {
     tabBarOptions: {
       upperCaseLabel: false,
-      activeTintColor: "#0a4d65",
+      activeTintColor: "#3d6e8d",
       style: {
-        backgroundColor: "#ccd3de"
+        backgroundColor: "#d5dee7"
       },
       labelStyle: {
-        color: "#0a4d65",
+        color: "#3d6e8d",
         fontSize: 20,
         fontWeight: "bold"
       },
       indicatorStyle: {
-        backgroundColor: "gray",
+        backgroundColor: "#999",
         height: 3,
         borderTopLeftRadius: 2,
         borderTopRightRadius: 2
@@ -43,7 +43,7 @@ const MainView = createAppContainer(MainNavigator);
 const _styles = {
   main: RX.Styles.createViewStyle({
     flex: 1,
-    backgroundColor: "#069"
+    backgroundColor: "#3d6e8d"
   }),
 
   content: RX.Styles.createViewStyle({
@@ -56,8 +56,8 @@ const _styles = {
   }),
 
   logo: RX.Styles.createImageStyle({
-    marginTop: isIphoneX ? 50 : 20,
-    marginHorizontal: 10,
+    marginTop: isIphoneX ? 50 : 0,
+    marginHorizontal: 20,
     marginBottom: 10,
     height: 80
   }),
