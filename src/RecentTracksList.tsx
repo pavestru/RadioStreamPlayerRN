@@ -4,9 +4,9 @@ import RX from "reactxp";
 import { StateContext } from "./StateContext";
 
 const _styles = {
-  main: RX.Styles.createViewStyle({
-    padding: 20,
-    marginTop: 10
+  main: RX.Styles.createScrollViewStyle({
+    padding: 30,
+    marginTop: 0
   }),
   listItem: RX.Styles.createViewStyle({
     flexDirection: "row",
@@ -49,7 +49,7 @@ export const RecentTracksList = () => (
     {state => {
       const tracks = state!.recentTracks;
       return (
-        <RX.View style={_styles.main}>
+        <RX.ScrollView style={_styles.main}>
           {tracks.map(({ artist, title, time }) => (
             <RX.View key={time} style={_styles.listItem}>
               <RX.View style={_styles.artistAndTitle}>
@@ -63,7 +63,7 @@ export const RecentTracksList = () => (
               </RX.View>
             </RX.View>
           ))}
-        </RX.View>
+        </RX.ScrollView>
       );
     }}
   </StateContext.Consumer>

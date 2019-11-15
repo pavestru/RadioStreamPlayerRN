@@ -4,9 +4,9 @@ import * as cheerio from "cheerio";
 import { articlesUrl } from "./radio.config.json";
 
 const _styles = {
-  main: RX.Styles.createViewStyle({
-    padding: 20,
-    marginTop: 10
+  main: RX.Styles.createScrollViewStyle({
+    padding: 30,
+    marginTop: 0
   }),
   listItem: RX.Styles.createViewStyle({
     flexDirection: "row",
@@ -38,8 +38,12 @@ export class Articles extends React.Component<{}, ArticlesState> {
   state = {
     articles: []
   };
-  async componentDidMount() {
-    const res = await fetch(articlesUrl);
+
+  async loadArticles(index: Number = 1) {
+    if (index <= 0) {
+      return [];
+    }
+    const res = await fetch(`${articlesUrl}/?page=${index}`);
     const html = await res.text();
     const $ = cheerio.load(html);
     const items = $(".news-list-item");
@@ -59,6 +63,18 @@ export class Articles extends React.Component<{}, ArticlesState> {
           .attr("href")
       });
     });
+    return articles;
+  }
+
+  async componentDidMount() {
+    let articles: Article[];
+    // Load first two pages of articles
+    articles = await this.loadArticles(1);
+    this.setState(state => ({
+      ...state,
+      articles: [...state.articles, ...articles]
+    }));
+    articles = await this.loadArticles(2);
     this.setState(state => ({
       ...state,
       articles: [...state.articles, ...articles]
@@ -66,7 +82,7 @@ export class Articles extends React.Component<{}, ArticlesState> {
   }
   render() {
     return (
-      <RX.View style={_styles.main}>
+      <RX.ScrollView style={_styles.main}>
         {this.state.articles.map(({ title, text, href }: Article) => (
           <RX.View key={href} style={_styles.listItem}>
             <RX.View>
@@ -75,7 +91,7 @@ export class Articles extends React.Component<{}, ArticlesState> {
             </RX.View>
           </RX.View>
         ))}
-      </RX.View>
+      </RX.ScrollView>
     );
   }
 }
