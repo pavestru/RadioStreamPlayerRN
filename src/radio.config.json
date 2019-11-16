@@ -2,6 +2,7 @@
   "radioName": "My Radio",
   "radioUrl": "http://relay.publicdomainproject.org:80/classical.mp3",
   "dataUrl": "http://centova.example.com:8080/external/rpc.php",
-  "articlesUrl": "https://myradio.com/blog/",
+  "articlesUrl": "blog/",
+  "webRootUrl": "https://myradio.com/",
   "ignoreTracksContaining": ["call-sign", "key-signature"]
 }

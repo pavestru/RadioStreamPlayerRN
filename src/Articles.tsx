@@ -1,7 +1,13 @@
 import React from "react";
 import RX from "reactxp";
 import * as cheerio from "cheerio";
-import { articlesUrl } from "./radio.config.json";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+
+import { webRootUrl, articlesUrl } from "./radio.config.json";
+
+export const LinkIcon = () => (
+  <Icon name="open-in-new" size={15} color="white" />
+);
 
 const _styles = {
   main: RX.Styles.createScrollViewStyle({
@@ -21,6 +27,12 @@ const _styles = {
   text: RX.Styles.createTextStyle({
     color: "white",
     fontSize: 18
+  }),
+  link: RX.Styles.createLinkStyle({
+    fontWeight: "bold"
+  }),
+  padding: RX.Styles.createViewStyle({
+    height: 30
   })
 };
 
@@ -43,7 +55,7 @@ export class Articles extends React.Component<{}, ArticlesState> {
     if (index <= 0) {
       return [];
     }
-    const res = await fetch(`${articlesUrl}/?page=${index}`);
+    const res = await fetch(`${webRootUrl}${articlesUrl}/?page=${index}`);
     const html = await res.text();
     const $ = cheerio.load(html);
     const items = $(".news-list-item");
@@ -63,7 +75,12 @@ export class Articles extends React.Component<{}, ArticlesState> {
           .attr("href")
       });
     });
+    console.log(articles[0].href);
     return articles;
+  }
+
+  openLink(href: string) {
+    RX.Linking.openUrl(`${webRootUrl}${href}`);
   }
 
   async componentDidMount() {
@@ -86,11 +103,20 @@ export class Articles extends React.Component<{}, ArticlesState> {
         {this.state.articles.map(({ title, text, href }: Article) => (
           <RX.View key={href} style={_styles.listItem}>
             <RX.View>
-              <RX.Text style={_styles.title}>{title}</RX.Text>
-              <RX.Text style={_styles.text}>{text}</RX.Text>
+              <RX.Link style={_styles.link} url={`${webRootUrl}${href}`}>
+                <RX.Text style={_styles.title}>{title}</RX.Text>
+              </RX.Link>
+              <RX.Text style={_styles.text}>
+                {text}
+                <RX.Link style={_styles.link} url={`${webRootUrl}${href}`}>
+                  <RX.Text>{`   Čítať ďalej `}</RX.Text>
+                  <LinkIcon />
+                </RX.Link>
+              </RX.Text>
             </RX.View>
           </RX.View>
         ))}
+        <RX.View style={_styles.padding}></RX.View>
       </RX.ScrollView>
     );
   }
