@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import RX from "reactxp";
 
 import Video from "react-native-video";
@@ -49,55 +49,42 @@ const _styles = {
   })
 };
 
-interface State {
-  paused: boolean;
-}
+export const Player = () => {
+  const [paused, setState] = useState(true);
+  const state = useContext(StateContext);
 
-export class Player extends RX.Component<{}, State> {
-  state = {
-    paused: true
+  const handleOnTap = () => {
+    setState(paused => !paused);
   };
 
-  handleOnTap = () => {
-    this.setState({ paused: !this.state.paused });
-  };
+  const artist =
+    state!.recentTracks.length > 0 ? state!.recentTracks[0].artist : "";
+  const title =
+    state!.recentTracks.length > 0 ? state!.recentTracks[0].title : "";
 
-  render() {
-    return (
-      <StateContext.Consumer>
-        {state => {
-          const artist =
-            state!.recentTracks.length > 0 ? state!.recentTracks[0].artist : "";
-          const title =
-            state!.recentTracks.length > 0 ? state!.recentTracks[0].title : "";
-          return (
-            <RX.View style={_styles.player}>
-              <RX.GestureView style={_styles.button} onTap={this.handleOnTap}>
-                {this.state.paused ? <Play /> : <Stop />}
-                {!this.state.paused && (
-                  <Video
-                    source={{
-                      uri: radioUrl
-                    }}
-                    paused={this.state.paused}
-                    volume={this.state.volume}
-                    ignoreSilentSwitch="ignore"
-                    playInBackground
-                  />
-                )}
-              </RX.GestureView>
-              <RX.View style={_styles.info}>
-                <RX.Text numberOfLines={1} style={_styles.title}>
-                  {title}
-                </RX.Text>
-                <RX.Text numberOfLines={1} style={_styles.artist}>
-                  {artist}
-                </RX.Text>
-              </RX.View>
-            </RX.View>
-          );
-        }}
-      </StateContext.Consumer>
-    );
-  }
-}
+  return (
+    <RX.View style={_styles.player}>
+      <RX.GestureView style={_styles.button} onTap={handleOnTap}>
+        {paused ? <Play /> : <Stop />}
+        {!paused && (
+          <Video
+            source={{
+              uri: radioUrl
+            }}
+            paused={paused}
+            ignoreSilentSwitch="ignore"
+            playInBackground
+          />
+        )}
+      </RX.GestureView>
+      <RX.View style={_styles.info}>
+        <RX.Text numberOfLines={1} style={_styles.title}>
+          {title}
+        </RX.Text>
+        <RX.Text numberOfLines={1} style={_styles.artist}>
+          {artist}
+        </RX.Text>
+      </RX.View>
+    </RX.View>
+  );
+};

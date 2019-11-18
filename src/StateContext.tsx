@@ -32,15 +32,17 @@ const ignoreTracksFilter = (track: Track) => {
   return true;
 };
 
-interface State {
+export interface State {
   recentTracks: Track[];
 }
 
-const { Consumer, Provider } = React.createContext<State | undefined>(
-  undefined
-);
+const initialState: State = {
+  recentTracks: []
+};
 
-class StateContextProvider extends React.Component<{}, State> {
+export const StateContext = React.createContext<State>(initialState);
+
+export class StateContextWrapper extends React.Component<{}, State> {
   state: State = {
     recentTracks: []
   };
@@ -69,8 +71,10 @@ class StateContextProvider extends React.Component<{}, State> {
   };
 
   render() {
-    return <Provider value={this.state}>{this.props.children}</Provider>;
+    return (
+      <StateContext.Provider value={this.state}>
+        {this.props.children}
+      </StateContext.Provider>
+    );
   }
 }
-
-export const StateContext = { Consumer, Provider: StateContextProvider };

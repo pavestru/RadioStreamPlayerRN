@@ -3,7 +3,7 @@ import RX from "reactxp";
 import { createAppContainer } from "react-navigation";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 
-import { StateContext } from "./StateContext";
+import { StateContextWrapper } from "./StateContext";
 
 import { isIphoneX } from "./helpers";
 
@@ -29,8 +29,8 @@ const MainNavigator = createMaterialTopTabNavigator(
         fontWeight: "bold"
       },
       indicatorStyle: {
-        backgroundColor: "#999",
-        height: 3,
+        backgroundColor: "#99a",
+        height: 4,
         borderTopLeftRadius: 2,
         borderTopRightRadius: 2
       }
@@ -72,7 +72,7 @@ const _styles = {
 export class App extends RX.Component {
   public render() {
     return (
-      <StateContext.Provider>
+      <StateContextWrapper>
         <RX.View style={_styles.main}>
           <RX.View style={_styles.content}>
             <RX.View style={_styles.logoView}>
@@ -87,7 +87,7 @@ export class App extends RX.Component {
           </RX.View>
           <Player />
         </RX.View>
-      </StateContext.Provider>
+      </StateContextWrapper>
     );
   }
 }
