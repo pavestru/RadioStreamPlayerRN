@@ -75,7 +75,6 @@ export class Articles extends React.Component<{}, ArticlesState> {
           .attr("href")
       });
     });
-    console.log(articles[0].href);
     return articles;
   }
 

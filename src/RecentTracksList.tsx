@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import RX from "reactxp";
 
 import { StateContext } from "./StateContext";
@@ -44,27 +44,29 @@ const formatTime = (time: number) => {
   return jsTime.toLocaleTimeString();
 };
 
-export const RecentTracksList = () => (
-  <StateContext.Consumer>
-    {state => {
-      const tracks = state!.recentTracks;
-      return (
-        <RX.ScrollView style={_styles.main}>
-          {tracks.map(({ artist, title, time }) => (
-            <RX.View key={time} style={_styles.listItem}>
-              <RX.View style={_styles.artistAndTitle}>
-                <RX.Text style={_styles.titleText}>{title}</RX.Text>
-                <RX.Text style={_styles.artistText}>{artist}</RX.Text>
-              </RX.View>
-              <RX.View style={_styles.time}>
-                <RX.Text style={_styles.timeText}>
-                  od {formatTime(time)}
-                </RX.Text>
-              </RX.View>
+export const RecentTracksList = () => {
+  const state = useContext(StateContext);
+  const tracks = state.recentTracks;
+
+  return (
+    <RX.ScrollView style={_styles.main}>
+      {tracks.length === 0 ? (
+        <RX.Text style={_styles.titleText}>
+          Sťahujem zoznam článkov zo stránky
+        </RX.Text>
+      ) : (
+        tracks.map(({ artist, title, time }) => (
+          <RX.View key={time} style={_styles.listItem}>
+            <RX.View style={_styles.artistAndTitle}>
+              <RX.Text style={_styles.titleText}>{title}</RX.Text>
+              <RX.Text style={_styles.artistText}>{artist}</RX.Text>
             </RX.View>
-          ))}
-        </RX.ScrollView>
-      );
-    }}
-  </StateContext.Consumer>
-);
+            <RX.View style={_styles.time}>
+              <RX.Text style={_styles.timeText}>od {formatTime(time)}</RX.Text>
+            </RX.View>
+          </RX.View>
+        ))
+      )}
+    </RX.ScrollView>
+  );
+};
