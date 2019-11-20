@@ -1,8 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import RX from "reactxp";
 
 import Video from "react-native-video";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+
+import MusicControl from "react-native-music-control";
+import { Command } from "react-native-music-control/lib/types";
 
 import { StateContext } from "./StateContext";
 
@@ -50,28 +53,80 @@ const _styles = {
 };
 
 export const Player = () => {
-  const [paused, setState] = useState(true);
+  const [playbackState, setPlaybackState] = useState({ paused: true });
   const state = useContext(StateContext);
 
+  const artist =
+    state.recentTracks.length > 0 ? state.recentTracks[0].artist : "";
+  const title =
+    state.recentTracks.length > 0 ? state.recentTracks[0].title : "";
+
   const handleOnTap = () => {
-    setState(paused => !paused);
+    setPlaybackState(({ paused }) => ({ paused: !paused }));
   };
 
-  const artist =
-    state!.recentTracks.length > 0 ? state!.recentTracks[0].artist : "";
-  const title =
-    state!.recentTracks.length > 0 ? state!.recentTracks[0].title : "";
+  const handlePlay = () => {
+    MusicControl.updatePlayback({
+      state: MusicControl.STATE_PLAYING
+    });
+    setPlaybackState(() => ({ paused: false }));
+  };
+
+  const handlePause = () => {
+    MusicControl.updatePlayback({
+      state: MusicControl.STATE_PAUSED
+    });
+    setPlaybackState(() => ({ paused: true }));
+  };
+
+  // Init MusicControl (run once)
+  useEffect(() => {
+    MusicControl.enableBackgroundMode(true);
+    MusicControl.handleAudioInterruptions(true);
+    MusicControl.enableControl("play", true);
+    MusicControl.enableControl("pause", true);
+    MusicControl.enableControl("nextTrack", false);
+    MusicControl.enableControl("previousTrack", false);
+    MusicControl.enableControl("changePlaybackPosition", false);
+    MusicControl.enableControl("seekForward", false); // iOS only
+    MusicControl.enableControl("seekBackward", false); // iOS only
+    // MusicControl.enableControl("seek", false); // Android only
+    MusicControl.enableControl("skipForward", false);
+    MusicControl.enableControl("skipBackward", false);
+
+    MusicControl.setNowPlaying({});
+
+    MusicControl.on(Command.play, handlePlay);
+    MusicControl.on(Command.pause, handlePause);
+  }, []);
+
+  // Update MusicControl playback state (paused) with player state
+  useEffect(() => {
+    MusicControl.updatePlayback({
+      state: playbackState.paused
+        ? MusicControl.STATE_PAUSED
+        : MusicControl.STATE_PLAYING
+    });
+  }, [playbackState]);
+
+  // Update MusicControl "now playing" state with the state
+  useEffect(() => {
+    MusicControl.setNowPlaying({
+      title,
+      artist
+    });
+  }, [state]);
 
   return (
     <RX.View style={_styles.player}>
       <RX.GestureView style={_styles.button} onTap={handleOnTap}>
-        {paused ? <Play /> : <Stop />}
-        {!paused && (
+        {playbackState.paused ? <Play /> : <Stop />}
+        {!playbackState.paused && (
           <Video
             source={{
               uri: radioUrl
             }}
-            paused={paused}
+            paused={playbackState.paused}
             ignoreSilentSwitch="ignore"
             playInBackground
           />
