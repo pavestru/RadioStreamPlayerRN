@@ -24,17 +24,20 @@ const _styles = {
   title: RX.Styles.createTextStyle({
     fontSize: 20,
     fontWeight: "bold",
-    color: "white"
+    color: "white",
+    lineHeight: 24
   }),
   text: RX.Styles.createTextStyle({
     color: "white",
-    fontSize: 18
+    fontSize: 18,
+    lineHeight: 24
   }),
   link: RX.Styles.createLinkStyle({
-    fontWeight: "bold"
+    fontWeight: "bold",
+    lineHeight: 24
   }),
   padding: RX.Styles.createViewStyle({
-    height: 30
+    height: 40
   })
 };
 
