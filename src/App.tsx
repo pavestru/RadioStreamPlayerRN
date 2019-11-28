@@ -61,12 +61,6 @@ const _styles = {
     marginHorizontal: 20,
     marginBottom: 10,
     height: 80
-  }),
-
-  name: RX.Styles.createTextStyle({
-    fontWeight: "bold",
-    fontSize: 36,
-    color: "red"
   })
 };
 

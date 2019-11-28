@@ -12,6 +12,7 @@ interface Track {
 const fixChars = (text: string) => {
   let newText = text + "";
   for (const ch in charMap) {
+    // eslint-disable-next-line no-prototype-builtins
     if (charMap.hasOwnProperty(ch)) {
       const re = new RegExp(ch, "g");
       newText = newText.replace(re, charMap[ch]);
@@ -47,8 +48,9 @@ export class StateContextWrapper extends React.Component<{}, State> {
     recentTracks: []
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     this.getRecentTracks();
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     setInterval(this.getRecentTracks, 15 * 1000);
   }
 
