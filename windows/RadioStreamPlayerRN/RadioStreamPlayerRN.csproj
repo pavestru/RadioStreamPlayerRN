@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>d4ccb859-ce62-46f2-985a-3f62aae96a59</ProjectGuid>
+    <ProjectGuid>7a4faf3f-fbf8-46e4-965c-2bc0717d5bf2</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RadioStreamPlayerRN</RootNamespace>

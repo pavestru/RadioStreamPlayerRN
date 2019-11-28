@@ -1,5 +1,6 @@
 import React from "react";
 import RX from "reactxp";
+import "react-native-gesture-handler";
 import { createAppContainer } from "react-navigation";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 

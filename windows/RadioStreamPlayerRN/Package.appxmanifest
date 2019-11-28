@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="1d41554b-08ce-48c6-a7a3-ff54f0274355"
+    Name="cddc9bed-96cc-435b-9c44-a32a6789a2f1"
     Publisher="CN=pst"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="1d41554b-08ce-48c6-a7a3-ff54f0274355" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="cddc9bed-96cc-435b-9c44-a32a6789a2f1" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>RadioStreamPlayerRN</DisplayName>
