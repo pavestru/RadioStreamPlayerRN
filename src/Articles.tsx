@@ -9,6 +9,8 @@ export const LinkIcon = () => (
   <Icon name="open-in-new" size={15} color="white" />
 );
 
+const nbsp = " "; // Non-breakable space
+
 const _styles = {
   main: RX.Styles.createScrollViewStyle({
     padding: 30,
@@ -51,7 +53,7 @@ export class Articles extends React.Component<{}, ArticlesState> {
     articles: []
   };
 
-  async loadArticles(index: Number = 1) {
+  async loadArticles(index = 1) {
     if (index <= 0) {
       return [];
     }
@@ -108,7 +110,7 @@ export class Articles extends React.Component<{}, ArticlesState> {
               <RX.Text style={_styles.text}>
                 {text}
                 <RX.Link style={_styles.link} url={`${webRootUrl}${href}`}>
-                  <RX.Text>{`   Čítať ďalej `}</RX.Text>
+                  <RX.Text>{`   Čítať${nbsp}ďalej `}</RX.Text>
                   <LinkIcon />
                 </RX.Link>
               </RX.Text>
