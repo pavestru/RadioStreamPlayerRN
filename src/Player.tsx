@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
 import RX from "reactxp";
 
 import Video from "react-native-video";
@@ -49,11 +49,74 @@ const _styles = {
     lineHeight: 24,
     fontSize: 18,
     color: "#0a4d65"
+  }),
+  mainInfo: RX.Styles.createTextStyle({
+    color: "#0a4d65",
+    fontWeight: "bold",
+    lineHeight: 24,
+    textAlignVertical: "center",
+    fontSize: 18,
+    marginTop: 12
+  }),
+  subInfo: RX.Styles.createTextStyle({
+    lineHeight: 24,
+    fontSize: 18,
+    color: "#0a4d65"
   })
 };
 
+interface PlaybackState {
+  paused: boolean;
+  buffering: boolean;
+  error: boolean;
+}
+
+type PlaybackAction =
+  | { type: "tap" }
+  | { type: "play" }
+  | { type: "pause" }
+  | { type: "buffering" }
+  | { type: "loaded" }
+  | { type: "error"; error: string };
+
+const playbackStateReducer = (
+  state: PlaybackState,
+  action: PlaybackAction
+): PlaybackState => {
+  console.log(action.type);
+  let returnState;
+  switch (action.type) {
+    case "tap":
+      returnState = { ...state, paused: !state.paused };
+      break;
+    case "play":
+      returnState = { ...state, paused: false };
+      break;
+    case "pause":
+      returnState = { ...state, paused: true, buffering: false };
+      break;
+    case "buffering":
+      returnState = { ...state, buffering: true };
+      break;
+    case "loaded":
+      returnState = { ...state, buffering: false };
+      break;
+    case "error":
+      returnState = { ...state, buffering: false, paused: true, error: true };
+      break;
+    default:
+      returnState = state;
+  }
+  console.log(returnState);
+  return returnState;
+};
+
 export const Player = () => {
-  const [playbackState, setPlaybackState] = useState({ paused: true });
+  const [playbackState, dispatch] = useReducer(playbackStateReducer, {
+    paused: true,
+    buffering: false,
+    error: false
+  });
   const state = useContext(StateContext);
 
   const artist =
@@ -61,22 +124,34 @@ export const Player = () => {
   const title =
     state.recentTracks.length > 0 ? state.recentTracks[0].title : "";
 
-  const handleOnTap = () => {
-    setPlaybackState(({ paused }) => ({ paused: !paused }));
-  };
-
   const handlePlay = () => {
     MusicControl.updatePlayback({
       state: MusicControl.STATE_PLAYING
     });
-    setPlaybackState(() => ({ paused: false }));
+    dispatch({ type: "play" });
   };
 
   const handlePause = () => {
     MusicControl.updatePlayback({
       state: MusicControl.STATE_PAUSED
     });
-    setPlaybackState(() => ({ paused: true }));
+    dispatch({ type: "pause" });
+  };
+
+  const handleOnTap = () => {
+    if (playbackState.paused) {
+      handlePlay();
+    } else {
+      handlePause();
+    }
+  };
+
+  const handleOnLoadStart = () => {
+    dispatch({ type: "buffering" });
+  };
+
+  const handleOnLoad = () => {
+    dispatch({ type: "loaded" });
   };
 
   // Init MusicControl (run once)
@@ -107,7 +182,7 @@ export const Player = () => {
         ? MusicControl.STATE_PAUSED
         : MusicControl.STATE_PLAYING
     });
-  }, [playbackState]);
+  }, [playbackState.paused]);
 
   // Update MusicControl "now playing" state with the state
   useEffect(() => {
@@ -116,6 +191,26 @@ export const Player = () => {
       artist
     });
   }, [state]);
+
+  const infoComponent = playbackState.buffering ? (
+    <RX.View style={_styles.info}>
+      <RX.Text numberOfLines={1} style={_styles.mainInfo}>
+        Načítavam...
+      </RX.Text>
+      <RX.Text numberOfLines={2} style={_styles.subInfo}>
+        Ak prebieha načítavanie dlhšie, skontrolujte pripojenie na internet.
+      </RX.Text>
+    </RX.View>
+  ) : (
+    <RX.View style={_styles.info}>
+      <RX.Text numberOfLines={1} style={_styles.title}>
+        {title}
+      </RX.Text>
+      <RX.Text numberOfLines={1} style={_styles.artist}>
+        {artist}
+      </RX.Text>
+    </RX.View>
+  );
 
   return (
     <RX.View style={_styles.player}>
@@ -129,17 +224,12 @@ export const Player = () => {
             paused={playbackState.paused}
             ignoreSilentSwitch="ignore"
             playInBackground
+            onLoadStart={handleOnLoadStart}
+            onLoad={handleOnLoad}
           />
         )}
       </RX.GestureView>
-      <RX.View style={_styles.info}>
-        <RX.Text numberOfLines={1} style={_styles.title}>
-          {title}
-        </RX.Text>
-        <RX.Text numberOfLines={1} style={_styles.artist}>
-          {artist}
-        </RX.Text>
-      </RX.View>
+      {infoComponent}
     </RX.View>
   );
 };
