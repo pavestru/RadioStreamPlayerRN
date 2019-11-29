@@ -101,25 +101,32 @@ export class Articles extends React.Component<{}, ArticlesState> {
       articles: [...state.articles, ...articles]
     }));
   }
+
   render() {
     return (
       <RX.ScrollView style={_styles.main}>
-        {this.state.articles.map(({ title, text, href }: Article) => (
-          <RX.View key={href} style={_styles.listItem}>
-            <RX.View>
-              <RX.Link style={_styles.link} url={`${webRootUrl}${href}`}>
-                <RX.Text style={_styles.title}>{title}</RX.Text>
-              </RX.Link>
-              <RX.Text style={_styles.text}>
-                {text}
+        {this.state.articles.length === 0 ? (
+          <RX.Text style={_styles.text}>
+            Sťahujem zoznam článkov zo stránky...
+          </RX.Text>
+        ) : (
+          this.state.articles.map(({ title, text, href }: Article) => (
+            <RX.View key={href} style={_styles.listItem}>
+              <RX.View>
                 <RX.Link style={_styles.link} url={`${webRootUrl}${href}`}>
-                  <RX.Text>{`   Čítať${nbsp}ďalej `}</RX.Text>
-                  <LinkIcon />
+                  <RX.Text style={_styles.title}>{title}</RX.Text>
                 </RX.Link>
-              </RX.Text>
+                <RX.Text style={_styles.text}>
+                  {text}
+                  <RX.Link style={_styles.link} url={`${webRootUrl}${href}`}>
+                    <RX.Text>{`   Čítať${nbsp}ďalej `}</RX.Text>
+                    <LinkIcon />
+                  </RX.Link>
+                </RX.Text>
+              </RX.View>
             </RX.View>
-          </RX.View>
-        ))}
+          ))
+        )}
         <RX.View style={_styles.padding}></RX.View>
       </RX.ScrollView>
     );

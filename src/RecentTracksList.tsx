@@ -52,7 +52,7 @@ export const RecentTracksList = () => {
     <RX.ScrollView style={_styles.main}>
       {tracks.length === 0 ? (
         <RX.Text style={_styles.titleText}>
-          Sťahujem zoznam článkov zo stránky
+          Načítavam zoznam posledných hraných skladieb...
         </RX.Text>
       ) : (
         tracks.map(({ artist, title, time }) => (
