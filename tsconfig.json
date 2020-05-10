@@ -21,8 +21,7 @@
     "module": "es2015",
     "target": "es2015",
     "jsx": "react",
-    "lib": ["es5", "es2015", "dom"],
-    "resolveJsonModule": true
+    "lib": ["es5", "es2015", "dom"]
   },
 
   "include": ["src/**/*"],
