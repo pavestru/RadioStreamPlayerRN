@@ -13,7 +13,6 @@ import { RecentTracksList } from "./RecentTracksList";
 import { Articles } from "./Articles";
 
 const tabBarOptions = {
-  // upperCaseLabel: false,
   activeTintColor: "#3d6e8d",
   style: {
     backgroundColor: "#d5dee7",
@@ -22,6 +21,7 @@ const tabBarOptions = {
     color: "#3d6e8d",
     fontSize: 20,
     fontWeight: "bold",
+    textTransform: "none",
   },
   indicatorStyle: {
     backgroundColor: "#99a",
@@ -35,7 +35,12 @@ const Tab = createMaterialTopTabNavigator();
 
 const MainView = () => (
   <NavigationContainer>
-    <Tab.Navigator tabBarOptions={tabBarOptions}>
+    <Tab.Navigator
+      tabBarOptions={tabBarOptions}
+      sceneContainerStyle={{
+        backgroundColor: "transparent",
+      }}
+    >
       <Tab.Screen name="Články" component={Articles} />
       <Tab.Screen name="Posledné hrané" component={RecentTracksList} />
     </Tab.Navigator>
