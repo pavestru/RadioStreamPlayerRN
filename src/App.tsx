@@ -2,7 +2,9 @@ import React from "react";
 import RX from "reactxp";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
+import { MaterialTopTabBarOptions } from "@react-navigation/material-top-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import { StateContextWrapper } from "./StateContext";
 
@@ -13,7 +15,11 @@ import { RecentTracksList } from "./RecentTracksList";
 import { Articles } from "./Articles";
 import { Contact } from "./Contact";
 
-const tabBarOptions = {
+export const PlaylistIcon = () => (
+  <Icon name="playlist-music" size={24} color="#0a4d65" />
+);
+
+const tabBarOptions: MaterialTopTabBarOptions = {
   activeTintColor: "#3d6e8d",
   style: {
     backgroundColor: "#d5dee7",
@@ -30,6 +36,7 @@ const tabBarOptions = {
     borderTopLeftRadius: 2,
     borderTopRightRadius: 2,
   },
+  showIcon: true,
 };
 
 const Tab = createMaterialTopTabNavigator();
@@ -44,7 +51,15 @@ const MainView = () => (
     >
       <Tab.Screen name="Kontakt" component={Contact} />
       <Tab.Screen name="Články" component={Articles} />
-      <Tab.Screen name="Posledné hrané" component={RecentTracksList} />
+      <Tab.Screen
+        name="Posledné hrané"
+        component={RecentTracksList}
+        options={{
+          tabBarLabel: () => null,
+          tabBarIcon: () => <PlaylistIcon />,
+          title: "Posledné hrané",
+        }}
+      />
     </Tab.Navigator>
   </NavigationContainer>
 );
