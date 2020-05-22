@@ -11,6 +11,7 @@ import { isIphoneX } from "./helpers";
 import { Player } from "./Player";
 import { RecentTracksList } from "./RecentTracksList";
 import { Articles } from "./Articles";
+import { Contact } from "./Contact";
 
 const tabBarOptions = {
   activeTintColor: "#3d6e8d",
@@ -41,6 +42,7 @@ const MainView = () => (
         backgroundColor: "transparent",
       }}
     >
+      <Tab.Screen name="Kontakt" component={Contact} />
       <Tab.Screen name="Články" component={Articles} />
       <Tab.Screen name="Posledné hrané" component={RecentTracksList} />
     </Tab.Navigator>
