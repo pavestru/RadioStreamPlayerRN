@@ -116,13 +116,11 @@ export class Articles extends React.Component<{}, ArticlesState> {
                 <RX.Link style={_styles.link} url={`${webRootUrl}${href}`}>
                   <RX.Text style={_styles.title}>{title}</RX.Text>
                 </RX.Link>
-                <RX.Text style={_styles.text}>
-                  {text}
-                  <RX.Link style={_styles.link} url={`${webRootUrl}${href}`}>
-                    <RX.Text>{`   Čítať${nbsp}ďalej `}</RX.Text>
-                    <LinkIcon />
-                  </RX.Link>
-                </RX.Text>
+                <RX.Text style={_styles.text}>{text}</RX.Text>
+                <RX.Link style={_styles.link} url={`${webRootUrl}${href}`}>
+                  <LinkIcon />
+                  <RX.Text style={_styles.text}>{` Čítať${nbsp}ďalej`}</RX.Text>
+                </RX.Link>
               </RX.View>
             </RX.View>
           ))
