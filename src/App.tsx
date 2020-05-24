@@ -80,7 +80,7 @@ const _styles = {
   }),
 
   logo: RX.Styles.createImageStyle({
-    marginTop: isIphoneX ? 50 : 0,
+    marginTop: isIphoneX ? 50 : 20,
     marginHorizontal: 20,
     marginBottom: 10,
     height: 80,

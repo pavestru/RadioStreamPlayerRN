@@ -1,6 +1,6 @@
 import { Dimensions, Platform } from "react-native";
 
-export const isIphoneX = () => {
+export const isIphoneX = (() => {
   const d = Dimensions.get("window");
   const { height, width } = d;
 
@@ -10,4 +10,4 @@ export const isIphoneX = () => {
     // Accounting for the height in either orientation
     (height === 812 || width === 812)
   );
-};
+})();
