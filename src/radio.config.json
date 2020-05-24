@@ -4,5 +4,14 @@
   "dataUrl": "http://centova.example.com:8080/external/rpc.php",
   "articlesUrl": "blog/",
   "webRootUrl": "https://myradio.com/",
-  "ignoreTracksContaining": ["call-sign", "key-signature"]
+  "ignoreTracksContaining": ["call-sign", "key-signature"],
+  "contact": {
+    "email": "info@myradio.com",
+    "telephone": ["+1 23 456 78 90"],
+    "address1": "Address line 1\nUnited Kingdom",
+    "address2": "Address line 2",
+    "organizationId": "Registration numbers of the organization",
+    "bankInfo": "Bank info",
+    "webDomain": "www.myradio.com"
+  }
 }
