@@ -106,7 +106,7 @@ export const Contact = () => (
     <View style={_styles.section}>
       <Text style={_styles.text}>
         <BankIcon />
-        {`${nbsp2x}${contact.bankAccount}`}
+        {`${nbsp2x}${contact.bankInfo}`}
       </Text>
     </View>
     <View style={_styles.section}>
