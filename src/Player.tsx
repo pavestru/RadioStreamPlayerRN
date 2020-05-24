@@ -23,7 +23,7 @@ const _styles = {
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
     flexDirection: "row",
-    paddingRight: 15
+    paddingRight: 15,
   }),
   button: RX.Styles.createViewStyle({
     width: 70,
@@ -31,11 +31,11 @@ const _styles = {
     margin: 15,
     padding: 3,
     backgroundColor: "#adbabf",
-    borderRadius: 25
+    borderRadius: 25,
   }),
   info: RX.Styles.createViewStyle({
     flexShrink: 1,
-    flexGrow: 1
+    flexGrow: 1,
   }),
   title: RX.Styles.createTextStyle({
     color: "#0a4d65",
@@ -43,12 +43,12 @@ const _styles = {
     lineHeight: 24,
     textAlignVertical: "center",
     fontSize: 18,
-    marginTop: 24
+    marginTop: 24,
   }),
   artist: RX.Styles.createTextStyle({
     lineHeight: 24,
     fontSize: 18,
-    color: "#0a4d65"
+    color: "#0a4d65",
   }),
   mainInfo: RX.Styles.createTextStyle({
     color: "#0a4d65",
@@ -56,13 +56,13 @@ const _styles = {
     lineHeight: 24,
     textAlignVertical: "center",
     fontSize: 18,
-    marginTop: 12
+    marginTop: 12,
   }),
   subInfo: RX.Styles.createTextStyle({
     lineHeight: 24,
     fontSize: 18,
-    color: "#0a4d65"
-  })
+    color: "#0a4d65",
+  }),
 };
 
 interface PlaybackState {
@@ -115,7 +115,7 @@ export const Player = () => {
   const [playbackState, dispatch] = useReducer(playbackStateReducer, {
     paused: true,
     buffering: false,
-    error: false
+    error: false,
   });
   const state = useContext(StateContext);
 
@@ -126,14 +126,14 @@ export const Player = () => {
 
   const handlePlay = () => {
     MusicControl.updatePlayback({
-      state: MusicControl.STATE_PLAYING
+      state: MusicControl.STATE_PLAYING,
     });
     dispatch({ type: "play" });
   };
 
   const handlePause = () => {
     MusicControl.updatePlayback({
-      state: MusicControl.STATE_PAUSED
+      state: MusicControl.STATE_PAUSED,
     });
     dispatch({ type: "pause" });
   };
@@ -180,7 +180,7 @@ export const Player = () => {
     MusicControl.updatePlayback({
       state: playbackState.paused
         ? MusicControl.STATE_PAUSED
-        : MusicControl.STATE_PLAYING
+        : MusicControl.STATE_PLAYING,
     });
   }, [playbackState.paused]);
 
@@ -188,7 +188,7 @@ export const Player = () => {
   useEffect(() => {
     MusicControl.setNowPlaying({
       title,
-      artist
+      artist,
     });
   }, [state]);
 
@@ -219,7 +219,7 @@ export const Player = () => {
         {!playbackState.paused && (
           <Video
             source={{
-              uri: radioUrl
+              uri: radioUrl,
             }}
             paused={playbackState.paused}
             ignoreSilentSwitch="ignore"

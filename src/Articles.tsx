@@ -14,31 +14,32 @@ const nbsp = " "; // Non-breakable space
 const _styles = {
   main: RX.Styles.createScrollViewStyle({
     padding: 30,
-    marginTop: 0
+    marginTop: 0,
   }),
   listItem: RX.Styles.createViewStyle({
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 20
+    marginBottom: 20,
   }),
   title: RX.Styles.createTextStyle({
     fontSize: 20,
     fontWeight: "bold",
     color: "white",
-    lineHeight: 24
+    lineHeight: 24,
   }),
   text: RX.Styles.createTextStyle({
     color: "white",
     fontSize: 18,
-    lineHeight: 24
+    lineHeight: 24,
   }),
   link: RX.Styles.createLinkStyle({
     fontWeight: "bold",
-    lineHeight: 24
+    lineHeight: 24,
+    fontSize: 20,
   }),
   padding: RX.Styles.createViewStyle({
-    height: 40
-  })
+    height: 40,
+  }),
 };
 
 interface Article {
@@ -53,7 +54,7 @@ interface ArticlesState {
 
 export class Articles extends React.Component<{}, ArticlesState> {
   state = {
-    articles: []
+    articles: [],
   };
 
   async loadArticles(index = 1) {
@@ -67,17 +68,9 @@ export class Articles extends React.Component<{}, ArticlesState> {
     const articles: Article[] = [];
     items.each((_index, item) => {
       articles.push({
-        title: $(item)
-          .find("h2")
-          .text()
-          .trim(),
-        text: $(item)
-          .find("div")
-          .text()
-          .trim(),
-        href: $(item)
-          .find("a")
-          .attr("href")
+        title: $(item).find("h2").text().trim(),
+        text: $(item).find("div").text().trim(),
+        href: $(item).find("a").attr("href"),
       });
     });
     return articles;
@@ -91,14 +84,14 @@ export class Articles extends React.Component<{}, ArticlesState> {
     let articles: Article[];
     // Load first two pages of articles
     articles = await this.loadArticles(1);
-    this.setState(state => ({
+    this.setState((state) => ({
       ...state,
-      articles: [...state.articles, ...articles]
+      articles: [...state.articles, ...articles],
     }));
     articles = await this.loadArticles(2);
-    this.setState(state => ({
+    this.setState((state) => ({
       ...state,
-      articles: [...state.articles, ...articles]
+      articles: [...state.articles, ...articles],
     }));
   }
 

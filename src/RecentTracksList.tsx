@@ -4,9 +4,9 @@ import RX from "reactxp";
 import { StateContext } from "./StateContext";
 
 const _styles = {
-  main: RX.Styles.createScrollViewStyle({
+  main: RX.Styles.createViewStyle({
     padding: 30,
-    marginTop: 0
+    marginTop: 0,
   }),
   heading: RX.Styles.createTextStyle({
     fontSize: 22,
@@ -17,23 +17,23 @@ const _styles = {
   listItem: RX.Styles.createViewStyle({
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 15
+    marginBottom: 15,
   }),
   artistAndTitle: RX.Styles.createViewStyle({
     flexGrow: 1,
-    flexShrink: 1
+    flexShrink: 1,
   }),
   titleText: RX.Styles.createTextStyle({
     color: "white",
-    fontSize: 20
+    fontSize: 20,
   }),
   artistText: RX.Styles.createTextStyle({
     color: "lightgray",
-    fontSize: 18
+    fontSize: 18,
   }),
   time: RX.Styles.createViewStyle({
     flexBasis: 120,
-    flexGrow: 0
+    flexGrow: 0,
   }),
   timeText: RX.Styles.createTextStyle({
     height: 25,
@@ -41,8 +41,8 @@ const _styles = {
     textAlignVertical: "center",
     color: "lightgray",
     fontSize: 15,
-    textAlign: "right"
-  })
+    textAlign: "right",
+  }),
 };
 
 const formatTime = (time: number) => {
