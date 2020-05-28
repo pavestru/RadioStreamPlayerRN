@@ -16,7 +16,7 @@ import { Articles } from "./Articles";
 import { Contact } from "./Contact";
 
 export const PlaylistIcon = () => (
-  <Icon name="playlist-music" size={24} color="#0a4d65" />
+  <Icon name="playlist-music" size={24} color="#3d6e8d" />
 );
 
 const tabBarOptions: MaterialTopTabBarOptions = {
@@ -49,15 +49,14 @@ const MainView = () => (
         backgroundColor: "transparent",
       }}
     >
-      <Tab.Screen name="Kontakt" component={Contact} />
       <Tab.Screen name="Články" component={Articles} />
+      <Tab.Screen name="Kontakt" component={Contact} />
       <Tab.Screen
         name="Posledné hrané"
         component={RecentTracksList}
         options={{
           tabBarLabel: () => null,
           tabBarIcon: () => <PlaylistIcon />,
-          title: "Posledné hrané",
         }}
       />
     </Tab.Navigator>
@@ -80,9 +79,9 @@ const _styles = {
   }),
 
   logo: RX.Styles.createImageStyle({
-    marginTop: isIphoneX ? 50 : 20,
+    marginTop: isIphoneX ? 40 : 20,
     marginHorizontal: 20,
-    marginBottom: 10,
+    marginBottom: 5,
     height: 80,
   }),
 };
