@@ -1,2 +1,3 @@
 # RadioStreamPlayerRN
-Radio Stream Player with React Native / ReactXP
+
+Radio Stream Player with React Native / expo (originally ReactXP).
