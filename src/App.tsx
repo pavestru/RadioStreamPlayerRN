@@ -1,10 +1,10 @@
 import React from "react";
-import RX from "reactxp";
-import "react-native-gesture-handler";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, View, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { MaterialTopTabBarOptions } from "@react-navigation/material-top-tabs";
+import { MaterialTopTabNavigationOptions } from "@react-navigation/material-top-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
 
 import { StateContextWrapper } from "./StateContext";
 
@@ -16,27 +16,27 @@ import { Articles } from "./Articles";
 import { Contact } from "./Contact";
 
 export const PlaylistIcon = () => (
-  <Icon name="playlist-music" size={24} color="#3d6e8d" />
+  <Icon name="playlist-music" size={24} color="#0a4d65" />
 );
 
-const tabBarOptions: MaterialTopTabBarOptions = {
-  activeTintColor: "#3d6e8d",
-  style: {
+const tabBarOptions: MaterialTopTabNavigationOptions = {
+  tabBarActiveTintColor: "#3d6e8d",
+  tabBarStyle: {
     backgroundColor: "#d5dee7",
   },
-  labelStyle: {
+  tabBarLabelStyle: {
     color: "#3d6e8d",
     fontSize: 20,
     fontWeight: "bold",
     textTransform: "none",
   },
-  indicatorStyle: {
+  tabBarIndicatorStyle: {
     backgroundColor: "#99a",
     height: 4,
     borderTopLeftRadius: 2,
     borderTopRightRadius: 2,
   },
-  showIcon: true,
+  tabBarShowIcon: true,
 };
 
 const Tab = createMaterialTopTabNavigator();
@@ -44,7 +44,7 @@ const Tab = createMaterialTopTabNavigator();
 const MainView = () => (
   <NavigationContainer>
     <Tab.Navigator
-      tabBarOptions={tabBarOptions}
+      screenOptions={tabBarOptions}
       sceneContainerStyle={{
         backgroundColor: "transparent",
       }}
@@ -57,54 +57,57 @@ const MainView = () => (
         options={{
           tabBarLabel: () => null,
           tabBarIcon: () => <PlaylistIcon />,
+          title: "Posledné hrané",
         }}
       />
     </Tab.Navigator>
+    <StatusBar style="auto" />
   </NavigationContainer>
 );
 
-const _styles = {
-  main: RX.Styles.createViewStyle({
+const _styles = StyleSheet.create({
+  main: {
     flex: 1,
     backgroundColor: "#3d6e8d",
-  }),
+  },
 
-  content: RX.Styles.createViewStyle({
+  content: {
     flexShrink: 1,
     flexGrow: 1,
-  }),
+  },
 
-  logoView: RX.Styles.createViewStyle({
+  logoView: {
+    flexGrow: 0,
+    flexShrink: 0,
+    flex: 0,
     backgroundColor: "#fafbfd",
-  }),
+  },
 
-  logo: RX.Styles.createImageStyle({
-    marginTop: isIphoneX ? 40 : 20,
-    marginHorizontal: 20,
-    marginBottom: 5,
+  logo: {
+    marginTop: isIphoneX ? 50 : 20,
+    marginLeft: "5%",
+    marginBottom: 10,
+    width: "90%",
     height: 80,
-  }),
-};
+  },
+});
 
-export class App extends RX.Component {
-  public render() {
-    return (
-      <StateContextWrapper>
-        <RX.View style={_styles.main}>
-          <RX.View style={_styles.content}>
-            <RX.View style={_styles.logoView}>
-              <RX.Image
-                resizeMode="contain"
-                style={_styles.logo}
-                source={require("./logo.png")}
-                title="Logo"
-              />
-            </RX.View>
-            <MainView />
-          </RX.View>
-          <Player />
-        </RX.View>
-      </StateContextWrapper>
-    );
-  }
+export function App() {
+  return (
+    <StateContextWrapper>
+      <View style={_styles.main}>
+        <View style={_styles.content}>
+          <View style={_styles.logoView}>
+            <Image
+              resizeMode="contain"
+              style={_styles.logo}
+              source={require("./logo.png")}
+            />
+          </View>
+          <MainView />
+        </View>
+        <Player />
+      </View>
+    </StateContextWrapper>
+  );
 }

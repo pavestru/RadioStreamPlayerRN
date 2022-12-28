@@ -1,7 +1,9 @@
 import React from "react";
-import RX from "reactxp";
+import { Text, ScrollView, View, StyleSheet } from "react-native";
 import * as cheerio from "cheerio";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
+
+import { Link } from "./Link";
 
 import { webRootUrl, articlesUrl } from "./radio.config.json";
 
@@ -11,36 +13,36 @@ export const LinkIcon = () => (
 
 const nbsp = " "; // Non-breakable space
 
-const _styles = {
-  main: RX.Styles.createScrollViewStyle({
+const _styles = StyleSheet.create({
+  main: {
     padding: 30,
     marginTop: 0,
-  }),
-  listItem: RX.Styles.createViewStyle({
+  },
+  listItem: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 20,
-  }),
-  title: RX.Styles.createTextStyle({
+  },
+  title: {
     fontSize: 20,
     fontWeight: "bold",
     color: "white",
     lineHeight: 24,
-  }),
-  text: RX.Styles.createTextStyle({
+  },
+  text: {
     color: "white",
     fontSize: 18,
     lineHeight: 24,
-  }),
-  link: RX.Styles.createLinkStyle({
+  },
+  link: {
     fontWeight: "bold",
     lineHeight: 24,
     fontSize: 20,
-  }),
-  padding: RX.Styles.createViewStyle({
+  },
+  padding: {
     height: 40,
-  }),
-};
+  },
+});
 
 interface Article {
   title: string;
@@ -70,14 +72,10 @@ export class Articles extends React.Component<{}, ArticlesState> {
       articles.push({
         title: $(item).find("h2").text().trim(),
         text: $(item).find("div").text().trim(),
-        href: $(item).find("a").attr("href"),
+        href: $(item).find("a").attr("href") || "",
       });
     });
     return articles;
-  }
-
-  openLink(href: string) {
-    RX.Linking.openUrl(`${webRootUrl}${href}`);
   }
 
   async componentDidMount() {
@@ -97,29 +95,29 @@ export class Articles extends React.Component<{}, ArticlesState> {
 
   render() {
     return (
-      <RX.ScrollView style={_styles.main}>
+      <ScrollView style={_styles.main}>
         {this.state.articles.length === 0 ? (
-          <RX.Text style={_styles.text}>
+          <Text style={_styles.text}>
             Sťahujem zoznam článkov zo stránky...
-          </RX.Text>
+          </Text>
         ) : (
           this.state.articles.map(({ title, text, href }: Article) => (
-            <RX.View key={href} style={_styles.listItem}>
-              <RX.View>
-                <RX.Link style={_styles.link} url={`${webRootUrl}${href}`}>
-                  <RX.Text style={_styles.title}>{title}</RX.Text>
-                </RX.Link>
-                <RX.Text style={_styles.text}>{text}</RX.Text>
-                <RX.Link style={_styles.link} url={`${webRootUrl}${href}`}>
+            <View key={href} style={_styles.listItem}>
+              <View>
+                <Link style={_styles.link} url={`${webRootUrl}${href}`}>
+                  <Text style={_styles.title}>{title}</Text>
+                </Link>
+                <Text style={_styles.text}>{text}</Text>
+                <Link style={_styles.link} url={`${webRootUrl}${href}`}>
                   <LinkIcon />
-                  <RX.Text style={_styles.text}>{` Čítať${nbsp}ďalej`}</RX.Text>
-                </RX.Link>
-              </RX.View>
-            </RX.View>
+                  <Text style={_styles.text}>{` Čítať${nbsp}ďalej`}</Text>
+                </Link>
+              </View>
+            </View>
           ))
         )}
-        <RX.View style={_styles.padding}></RX.View>
-      </RX.ScrollView>
+        <View style={_styles.padding}></View>
+      </ScrollView>
     );
   }
 }

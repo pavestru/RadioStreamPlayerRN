@@ -38,14 +38,17 @@ export interface State {
 }
 
 const initialState: State = {
-  recentTracks: []
+  recentTracks: [],
 };
 
 export const StateContext = React.createContext<State>(initialState);
 
-export class StateContextWrapper extends React.Component<{}, State> {
+export class StateContextWrapper extends React.Component<
+  { children: React.ReactNode },
+  State
+> {
   state: State = {
-    recentTracks: []
+    recentTracks: [],
   };
 
   componentDidMount() {
@@ -63,9 +66,9 @@ export class StateContextWrapper extends React.Component<{}, State> {
           .map((trackObj: Track) => ({
             artist: fixChars(trackObj.artist),
             title: fixChars(trackObj.title),
-            time: trackObj.time
+            time: trackObj.time,
           }))
-          .filter(ignoreTracksFilter)
+          .filter(ignoreTracksFilter),
       });
     } catch (error) {
       console.log(error);

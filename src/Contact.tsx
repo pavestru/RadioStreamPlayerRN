@@ -1,10 +1,12 @@
 import React from "react";
-import RX, { View, ScrollView, Text, Link } from "reactxp";
+import { View, ScrollView, Text, StyleSheet } from "react-native";
 
-import Entypo from "react-native-vector-icons/Entypo";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { Entypo } from "@expo/vector-icons";
+import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
 
-import { contact, radioName } from "./radio.config.json";
+import { Link } from "./Link";
+
+import { contact, radioNameLong } from "./radio.config.json";
 
 const iconSize = 18;
 const iconColor = "white";
@@ -23,35 +25,35 @@ const InfoIcon = () => (
 
 const nbsp2x = "  "; // Non-breakable space
 
-const _styles = {
-  main: RX.Styles.createScrollViewStyle({
+const _styles = StyleSheet.create({
+  main: {
     padding: 30,
     margin: 0,
-  }),
-  section: RX.Styles.createViewStyle({
+  },
+  section: {
     marginBottom: 20,
-  }),
-  text: RX.Styles.createTextStyle({
+  },
+  text: {
     color: "white",
     fontSize: 18,
-  }),
-  link: RX.Styles.createLinkStyle({
+  },
+  link: {
     textDecorationLine: "underline",
-  }),
-  heading: RX.Styles.createTextStyle({
+  },
+  heading: {
     fontSize: 22,
     fontWeight: "500",
     color: "white",
-  }),
-  padding: RX.Styles.createViewStyle({
+  },
+  padding: {
     height: 40,
-  }),
-};
+  },
+});
 
 export const Contact = () => (
   <ScrollView style={_styles.main}>
     <View style={_styles.section}>
-      <Text style={_styles.heading}>{radioName}</Text>
+      <Text style={_styles.heading}>{radioNameLong}</Text>
     </View>
     <View style={_styles.section}>
       <Text style={_styles.text}>
