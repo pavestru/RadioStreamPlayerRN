@@ -1,4 +1,5 @@
 import React from "react";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
@@ -7,8 +8,6 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
 
 import { StateContextWrapper } from "./StateContext";
-
-import { isIphoneX } from "./helpers";
 
 import { Player } from "./Player";
 import { RecentTracksList } from "./RecentTracksList";
@@ -61,7 +60,6 @@ const MainView = () => (
         }}
       />
     </Tab.Navigator>
-    <StatusBar style="auto" />
   </NavigationContainer>
 );
 
@@ -84,30 +82,33 @@ const _styles = StyleSheet.create({
   },
 
   logo: {
-    marginTop: isIphoneX ? 50 : 20,
     marginLeft: "5%",
     marginBottom: 10,
     width: "90%",
     height: 80,
+    marginVertical: 0,
   },
 });
 
 export function App() {
   return (
-    <StateContextWrapper>
-      <View style={_styles.main}>
-        <View style={_styles.content}>
-          <View style={_styles.logoView}>
-            <Image
-              resizeMode="contain"
-              style={_styles.logo}
-              source={require("./logo.png")}
-            />
+    <SafeAreaProvider>
+      <StatusBar style="dark" />
+      <StateContextWrapper>
+        <View style={_styles.main}>
+          <View style={_styles.content}>
+            <SafeAreaView style={_styles.logoView} edges={["top"]}>
+              <Image
+                resizeMode="contain"
+                style={_styles.logo}
+                source={require("./logo.png")}
+              />
+            </SafeAreaView>
+            <MainView />
           </View>
-          <MainView />
+          <Player />
         </View>
-        <Player />
-      </View>
-    </StateContextWrapper>
+      </StateContextWrapper>
+    </SafeAreaProvider>
   );
 }
