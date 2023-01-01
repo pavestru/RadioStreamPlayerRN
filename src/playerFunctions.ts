@@ -9,6 +9,10 @@ export const stopRadio = () => {
   TrackPlayer.pause();
 };
 
+export const stopRadioAndRemoveNotification = () => {
+  TrackPlayer.reset();
+};
+
 export const playRadio = async () => {
   TrackPlayer.reset(); // stops playing and clears playlist
   await TrackPlayer.add([
