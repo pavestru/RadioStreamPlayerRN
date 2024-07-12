@@ -3,7 +3,7 @@ import TrackPlayer, {
   Capability,
 } from "react-native-track-player";
 
-const AUDIO_CAPABILITIES = [Capability.Play, Capability.Stop];
+const AUDIO_CAPABILITIES = [Capability.Play, Capability.Pause, Capability.Stop];
 
 export const SetupService = async (): Promise<boolean> => {
   let isSetup = false;
