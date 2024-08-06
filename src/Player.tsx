@@ -29,10 +29,10 @@ export function Player() {
     run();
   }, []);
 
-  const playbackState = usePlaybackState();
+  const { state: playbackState }  = usePlaybackState();
   const isPlaying = playbackState === State.Playing;
   const isLoading = useDebouncedValue(
-    playbackState === State.Connecting || playbackState === State.Buffering,
+    playbackState === State.Loading || playbackState === State.Buffering,
     250
   );
 

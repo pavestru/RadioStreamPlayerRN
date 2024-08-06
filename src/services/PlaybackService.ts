@@ -24,7 +24,7 @@ export async function PlaybackService() {
         return;
       }
       if (paused) {
-        const playerState = await TrackPlayer.getState();
+        const { state: playerState } = await TrackPlayer.getPlaybackState();
         wasPausedByDuck = playerState !== State.Paused;
         stopRadio();
       } else {
