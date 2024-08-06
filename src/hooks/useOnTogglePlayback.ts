@@ -13,9 +13,9 @@ export const useOnTogglePlayback = (isPlayerReady: boolean) => {
     }
 
     if (isPlaying) {
-      stopRadioAndRemoveNotification();
+      await stopRadioAndRemoveNotification();
     } else {
-      playRadio();
+      await playRadio();
     }
   }, [isPlaying, isPlayerReady]);
 };

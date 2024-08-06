@@ -9,12 +9,12 @@ export const stopRadio = () => {
   TrackPlayer.pause();
 };
 
-export const stopRadioAndRemoveNotification = () => {
-  TrackPlayer.reset();
+export const stopRadioAndRemoveNotification = async () => {
+  await TrackPlayer.reset();
 };
 
 export const playRadio = async () => {
-  TrackPlayer.reset(); // stops playing and clears playlist
+  await TrackPlayer.reset(); // stops playing and clears playlist
   await TrackPlayer.add([
     {
       url: radioUrl,
@@ -23,5 +23,5 @@ export const playRadio = async () => {
       artwork: radioIcon,
     },
   ]);
-  TrackPlayer.play();
+  await TrackPlayer.play();
 };

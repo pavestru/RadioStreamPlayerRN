@@ -1,6 +1,6 @@
 import TrackPlayer, { Event, State } from "react-native-track-player";
 
-import { playRadio, stopRadio } from "../playerFunctions";
+import { playRadio, stopRadio, stopRadioAndRemoveNotification } from "../playerFunctions";
 
 let wasPausedByDuck = false;
 
@@ -13,6 +13,11 @@ export async function PlaybackService() {
   TrackPlayer.addEventListener(Event.RemotePlay, () => {
     console.log("Event.RemotePlay");
     playRadio();
+  });
+
+  TrackPlayer.addEventListener(Event.RemoteStop, () => {
+    console.log("Event.RemoteStop");
+    stopRadioAndRemoveNotification();
   });
 
   TrackPlayer.addEventListener(
