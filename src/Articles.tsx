@@ -2,6 +2,7 @@ import React from "react";
 import { Text, ScrollView, View, StyleSheet } from "react-native";
 import * as cheerio from "cheerio";
 import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
+import { withTranslation, Trans } from "react-i18next";
 
 import { Link } from "./Link";
 
@@ -54,7 +55,9 @@ interface ArticlesState {
   articles: Article[];
 }
 
-export class Articles extends React.Component<{}, ArticlesState> {
+type TFunction = (key: string) => string;
+
+class ArticlesComponent extends React.Component<{t: TFunction}, ArticlesState> {
   state = {
     articles: [],
   };
@@ -98,7 +101,9 @@ export class Articles extends React.Component<{}, ArticlesState> {
       <ScrollView style={_styles.main}>
         {this.state.articles.length === 0 ? (
           <Text style={_styles.text}>
-            Sťahujem zoznam článkov zo stránky...
+            <Trans i18nKey="articles.loading">
+              Loading articles...
+            </Trans>
           </Text>
         ) : (
           this.state.articles.map(({ title, text, href }: Article) => (
@@ -110,7 +115,10 @@ export class Articles extends React.Component<{}, ArticlesState> {
                 <Text style={_styles.text}>{text}</Text>
                 <Link style={_styles.link} url={`${webRootUrl}${href}`}>
                   <LinkIcon />
-                  <Text style={_styles.text}>{` Čítať${nbsp}ďalej`}</Text>
+                  <Text style={_styles.text}>
+                    {" "}
+                    <Trans i18nKey="articles.readMore">{`Read${nbsp}more`}</Trans>
+                  </Text>
                 </Link>
               </View>
             </View>
@@ -121,3 +129,5 @@ export class Articles extends React.Component<{}, ArticlesState> {
     );
   }
 }
+
+export const Articles = withTranslation()(ArticlesComponent);

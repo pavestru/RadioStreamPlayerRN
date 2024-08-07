@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { MaterialTopTabNavigationOptions } from "@react-navigation/material-top-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 
 import { StateContextWrapper } from "./StateContext";
 
@@ -40,28 +41,39 @@ const tabBarOptions: MaterialTopTabNavigationOptions = {
 
 const Tab = createMaterialTopTabNavigator();
 
-const MainView = () => (
-  <NavigationContainer>
-    <Tab.Navigator
-      screenOptions={tabBarOptions}
-      sceneContainerStyle={{
-        backgroundColor: "transparent",
-      }}
-    >
-      <Tab.Screen name="Články" component={Articles} />
-      <Tab.Screen name="Kontakt" component={Contact} />
-      <Tab.Screen
-        name="Posledné hrané"
-        component={RecentTracksList}
-        options={{
-          tabBarLabel: () => null,
-          tabBarIcon: () => <PlaylistIcon />,
-          title: "Posledné hrané",
+const MainView = () => {
+  const { t } = useTranslation();
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={tabBarOptions}
+        sceneContainerStyle={{
+          backgroundColor: "transparent",
         }}
-      />
-    </Tab.Navigator>
-  </NavigationContainer>
-);
+      >
+        <Tab.Screen
+          name="Articles"
+          component={Articles}
+          options={{ tabBarLabel: t("menu.articles") }}
+        />
+        <Tab.Screen
+          name="Contact"
+          component={Contact}
+          options={{ tabBarLabel: t("menu.about") }}
+        />
+        <Tab.Screen
+          name="Recent"
+          component={RecentTracksList}
+          options={{
+            tabBarLabel: () => null,
+            tabBarIcon: () => <PlaylistIcon />,
+            title: t("menu.recent"),
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+};
 
 const _styles = StyleSheet.create({
   main: {

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 
 import { StateContext } from "./StateContext";
+import { Trans } from "react-i18next";
 
 const _styles = StyleSheet.create({
   main: {
@@ -32,7 +33,7 @@ const _styles = StyleSheet.create({
     fontSize: 18,
   },
   time: {
-    flexBasis: 120,
+    flexBasis: 125,
     flexGrow: 0,
   },
   timeText: {
@@ -56,11 +57,15 @@ export const RecentTracksList = () => {
 
   return (
     <View style={_styles.main}>
-      <Text style={_styles.heading}>Posledné hrané</Text>
+      <Text style={_styles.heading}>
+        <Trans i18nKey="menu.recent">Recent tracks</Trans>
+      </Text>
       <ScrollView>
         {tracks.length === 0 ? (
           <Text style={_styles.titleText}>
-            Načítavam zoznam posledných hraných skladieb...
+            <Trans i18nKey="recentTracks.loading">
+              Loading recent tracks...
+            </Trans>
           </Text>
         ) : (
           tracks.map(({ artist, title, time }) => (
@@ -70,7 +75,10 @@ export const RecentTracksList = () => {
                 <Text style={_styles.artistText}>{artist}</Text>
               </View>
               <View style={_styles.time}>
-                <Text style={_styles.timeText}>od {formatTime(time)}</Text>
+                <Text style={_styles.timeText}>
+                  <Trans i18nKey="recentTracks.from">from</Trans>{" "}
+                  {formatTime(time)}
+                </Text>
               </View>
             </View>
           ))

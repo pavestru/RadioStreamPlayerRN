@@ -6,6 +6,7 @@ import TrackPlayer, {
   usePlaybackState,
 } from "react-native-track-player";
 import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
+import { Trans } from "react-i18next";
 
 import { StateContext } from "./StateContext";
 
@@ -49,10 +50,10 @@ export function Player() {
     isLoading || !isPlayerReady ? (
       <View style={_styles.info}>
         <Text numberOfLines={1} style={_styles.mainInfo}>
-          Načítavam...
+          <Trans i18nKey="player.loading">Loading...</Trans>
         </Text>
         <Text numberOfLines={2} style={_styles.subInfo}>
-          Ak prebieha načítavanie dlhšie, skontrolujte pripojenie na internet.
+          <Trans i18nKey="player.loadingNotice">If it takes long, check your internet connection.</Trans>
         </Text>
       </View>
     ) : (
