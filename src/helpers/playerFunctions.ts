@@ -1,6 +1,6 @@
 import TrackPlayer, { State } from "react-native-track-player";
 
-import { radioUrl, radioName, radioIcon } from "./radio.config.json";
+import { radioUrl, radioName, radioIcon } from "../radio.config.json";
 
 /**
  * React Native Track Player does not have "stop" functionality so I have to abuse "reset" for that

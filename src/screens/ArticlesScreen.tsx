@@ -4,9 +4,9 @@ import * as cheerio from "cheerio";
 import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
 import { withTranslation, Trans } from "react-i18next";
 
-import { Link } from "./Link";
+import { Link } from "../components/Link";
 
-import { webRootUrl, articlesUrl } from "./radio.config.json";
+import { webRootUrl, articlesUrl } from "../radio.config.json";
 
 export const LinkIcon = () => (
   <Icon name="open-in-new" size={15} color="white" />
@@ -130,4 +130,4 @@ class ArticlesComponent extends React.Component<{t: TFunction}, ArticlesState> {
   }
 }
 
-export const Articles = withTranslation()(ArticlesComponent);
+export const ArticlesScreen = withTranslation()(ArticlesComponent);

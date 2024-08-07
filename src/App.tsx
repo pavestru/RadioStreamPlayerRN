@@ -8,12 +8,12 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 
-import { StateContextWrapper } from "./StateContext";
+import { StateContextWrapper } from "./state/StateContext";
 
 import { Player } from "./Player";
-import { RecentTracksList } from "./RecentTracksList";
-import { Articles } from "./Articles";
-import { Contact } from "./Contact";
+import { RecentTracksScreen } from "./screens/RecentTracksScreen";
+import { ArticlesScreen } from "./screens/ArticlesScreen";
+import { AboutScreen } from "./screens/AboutScreen";
 
 export const PlaylistIcon = () => (
   <Icon name="playlist-music" size={24} color="#0a4d65" />
@@ -53,17 +53,17 @@ const MainView = () => {
       >
         <Tab.Screen
           name="Articles"
-          component={Articles}
+          component={ArticlesScreen}
           options={{ tabBarLabel: t("menu.articles") }}
         />
         <Tab.Screen
-          name="Contact"
-          component={Contact}
+          name="About"
+          component={AboutScreen}
           options={{ tabBarLabel: t("menu.about") }}
         />
         <Tab.Screen
-          name="Recent"
-          component={RecentTracksList}
+          name="RecentTracks"
+          component={RecentTracksScreen}
           options={{
             tabBarLabel: () => null,
             tabBarIcon: () => <PlaylistIcon />,

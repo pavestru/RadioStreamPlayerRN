@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
 
-import { StateContext } from "./StateContext";
+import { StateContext } from "../state/StateContext";
 import { Trans } from "react-i18next";
 
 const _styles = StyleSheet.create({
@@ -51,7 +51,7 @@ const formatTime = (time: number) => {
   return jsTime.toLocaleTimeString();
 };
 
-export const RecentTracksList = () => {
+export const RecentTracksScreen = () => {
   const state = useContext(StateContext);
   const tracks = state.recentTracks;
 

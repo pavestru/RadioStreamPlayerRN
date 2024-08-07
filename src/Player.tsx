@@ -8,7 +8,7 @@ import TrackPlayer, {
 import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
 import { Trans } from "react-i18next";
 
-import { StateContext } from "./StateContext";
+import { StateContext } from "./state/StateContext";
 
 import { SetupService } from "./services";
 import { useOnTogglePlayback } from "./hooks/useOnTogglePlayback";

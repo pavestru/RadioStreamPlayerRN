@@ -2,7 +2,7 @@ import React from "react";
 import { Text, TextStyle } from "react-native";
 import * as Linking from "expo-linking";
 
-import { webRootUrl } from "./radio.config.json";
+import { webRootUrl } from "../radio.config.json";
 
 export interface LinkProps {
   url: string;

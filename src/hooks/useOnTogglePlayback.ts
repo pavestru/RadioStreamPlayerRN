@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { usePlaybackState, State } from "react-native-track-player";
 
-import { playRadio, stopRadioAndRemoveNotification } from "../playerFunctions";
+import { playRadio, stopRadioAndRemoveNotification } from "../helpers/playerFunctions";
 
 export const useOnTogglePlayback = (isPlayerReady: boolean) => {
   const { state } = usePlaybackState();

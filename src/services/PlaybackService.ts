@@ -1,6 +1,6 @@
 import TrackPlayer, { Event, State } from "react-native-track-player";
 
-import { playRadio, stopRadio, stopRadioAndRemoveNotification } from "../playerFunctions";
+import { playRadio, stopRadio, stopRadioAndRemoveNotification } from "../helpers/playerFunctions";
 
 let wasPausedByDuck = false;
 

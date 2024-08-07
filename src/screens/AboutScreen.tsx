@@ -4,10 +4,10 @@ import { View, ScrollView, Text, StyleSheet } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
 
-import { Link } from "./Link";
+import { Link } from "../components/Link";
 
-import { contact, radioNameLong } from "./radio.config.json";
-import { usedLanguage } from "./i18n";
+import { contact, radioNameLong } from "../radio.config.json";
+import { usedLanguage } from "../i18n";
 import { Trans } from "react-i18next";
 
 const iconSize = 18;
@@ -53,7 +53,7 @@ const _styles = StyleSheet.create({
   },
 });
 
-export const Contact = () => (
+export const AboutScreen = () => (
   <ScrollView style={_styles.main}>
     <View style={_styles.section}>
       <Text style={_styles.heading}>{radioNameLong}</Text>

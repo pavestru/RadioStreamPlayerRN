@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { dataUrl, ignoreTracksContaining } from "./radio.config.json";
-import charMap from "./charMap";
+import { dataUrl, ignoreTracksContaining } from "../radio.config.json";
+import charMap from "../helpers/charMap";
 
 interface Track {
   title: string;
