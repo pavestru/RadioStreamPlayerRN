@@ -20,7 +20,7 @@ i18n
   .init({
     compatibilityJSON: "v3",
     lng: usedLanguage,
-    debug: true,
+    debug: __DEV__ === true, // only in development
     fallbackLng: "en",
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
