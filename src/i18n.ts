@@ -37,6 +37,9 @@ i18n
             loading: "Loading articles...",
             readMore: `Read${nbsp}more`,
           },
+          about: {
+            privacyPolicy: "Privacy Policy",
+          },
           recentTracks: {
             recent: "Recent tracks",
             loading: "Loading recent tracks...",
@@ -58,6 +61,9 @@ i18n
           articles: {
             loading: "Načítavam články...",
             readMore: `Čítať${nbsp}ďalej`,
+          },
+          about: {
+            privacyPolicy: "Ochrana osobných údajov",
           },
           recentTracks: {
             recent: "Posledné hrané",

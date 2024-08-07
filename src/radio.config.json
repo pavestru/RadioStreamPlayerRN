@@ -14,6 +14,10 @@
     "address2": "Address line 2",
     "organizationId": "Registration numbers of the organization",
     "bankInfo": "Bank info",
-    "webDomain": "www.myradio.com"
+    "webDomain": "www.myradio.com",
+    "privacyPolicy": {
+      "en": "privacy-policy/",
+      "sk": "ochrana-osobnych-udajov/"
+    }
   }
 }
