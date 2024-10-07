@@ -1,6 +1,11 @@
 import TrackPlayer, { Event, State } from "react-native-track-player";
 
-import { playRadio, stopRadio, stopRadioAndRemoveNotification } from "../helpers/playerFunctions";
+import {
+  playRadio,
+  stopRadio,
+  stopRadioAndRemoveNotification,
+  updateMetadata,
+} from "../helpers/playerFunctions";
 
 let wasPausedByDuck = false;
 
@@ -40,4 +45,12 @@ export async function PlaybackService() {
       }
     }
   );
+
+  TrackPlayer.addEventListener(Event.MetadataTimedReceived, async (data) => {
+    const urlParams = new URLSearchParams(data.metadata[0].raw[0].value + "");
+    const artist = urlParams.get("artist");
+    const title = urlParams.get("title");
+
+    await updateMetadata(title, artist);
+  });
 }

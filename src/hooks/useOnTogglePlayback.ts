@@ -3,7 +3,7 @@ import { usePlaybackState, State } from "react-native-track-player";
 
 import { playRadio, stopRadioAndRemoveNotification } from "../helpers/playerFunctions";
 
-export const useOnTogglePlayback = (isPlayerReady: boolean) => {
+export const useOnTogglePlayback = (isPlayerReady: boolean, title: string, artist: string) => {
   const { state } = usePlaybackState();
   const isPlaying = state === State.Playing;
 
@@ -15,7 +15,7 @@ export const useOnTogglePlayback = (isPlayerReady: boolean) => {
     if (isPlaying) {
       await stopRadioAndRemoveNotification();
     } else {
-      await playRadio();
+      await playRadio(title, artist);
     }
   }, [isPlaying, isPlayerReady]);
 };

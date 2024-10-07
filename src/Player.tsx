@@ -37,14 +37,14 @@ export function Player() {
     250
   );
 
-  const onTogglePlayback = useOnTogglePlayback(isPlayerReady);
-
   const state = useContext(StateContext);
-
+  
   const artist =
-    state.recentTracks.length > 0 ? state.recentTracks[0].artist : "";
+  state.recentTracks.length > 0 ? state.recentTracks[0].artist : "";
   const title =
-    state.recentTracks.length > 0 ? state.recentTracks[0].title : "";
+  state.recentTracks.length > 0 ? state.recentTracks[0].title : "";
+  
+  const onTogglePlayback = useOnTogglePlayback(isPlayerReady, artist, title);
 
   const infoComponent =
     isLoading || !isPlayerReady ? (
